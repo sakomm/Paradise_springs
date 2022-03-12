@@ -1,4 +1,4 @@
-from aiohttp import content_disposition_filename
+from pprint import pprint
 import requests
 import bs4
 import json
@@ -52,6 +52,25 @@ def construct_location():
 
     return location
 
+def get_text(element):
+    to_text = []
+    for text in element:
+        to_text.append(text.text)
+
+    return to_text
+
+"""
+get price of the property parse string and get the price
+
+given $122\xa0/ night$122 per night' is $122 per night
+"""
+def get_price(string):
+    plist = []
+    for prices in string:
+        ppn = prices.split(" ")
+        plist.append(f"{ppn[-3][5::]} {ppn[-2]} {ppn[-1]}")
+
+    return plist
 
 def scrape_page(url):
     # print(url)
@@ -59,7 +78,7 @@ def scrape_page(url):
 
     # get all the names of the properties and store in json file
     print("Scraping page...")
-    # content seems to be stored in a nested class called _8ssblpx and _gigle7 cause that make sense somehow???????
+    # content seems to be stored in a nested class called _8ssblpx and _gig1e7 cause that make sense somehow???????
 
     # get the html of the page
     page = requests.get(url)
@@ -67,10 +86,52 @@ def scrape_page(url):
     # parse the html
     content = page.content
     # print(content)
-    soup = bs4.BeautifulSoup(content, "lmxl")
+    soup = bs4.BeautifulSoup(content, "html.parser")
+    
+    # get all attributes of the class _8ssblpx and its child _gig1e7
+    parent = soup.find_all("div", class_="_8ssblpx")    
+    child = soup.find_all("div", class_="_gig1e7")
 
-    return 0
+    # exteracting data make graceful error handling later TODO
+    
+    #get the header of the property 
+    headers = soup.find_all("div", class_="mj1p6c8 dir dir-ltr")
+    #print only the text of the header of the property not the whole header
+    headers = get_text(headers)
+    # pprint(headers)
 
+    names = soup.find_all("div", class_="c1bx80b8 dir dir-ltr")
+    names = get_text(names)
+    # pprint(names)
+    
+    # get the price of the property
+    pp_night = soup.find_all("div", class_="p1qe1cgb dir dir-ltr")
+    pp_night = get_price(get_text(pp_night))
+    # pprint(pp_night)
+   
+
+    return headers, names, pp_night
+
+def make_json(headers, names, pp_night):
+    """
+    make a json file of the scraped data
+    """
+    # make a json file of the scraped data each property should have its own section all index 0 are tougether
+    with open("airbnb_scrape.json", "a") as f:
+
+        # #make each property its own section grab the header and name of the property and the price of the property and write as one json object
+        for i in range(20):
+            # print(f"{headers[i]}, {names[i]}, {pp_night[i]}")
+            if i != 19:
+                json.dump({"header": headers[i], "name": names[i], "price": pp_night[i]}, f)
+                f.write(",\n")
+            else:
+                json.dump({"header": headers[i], "name": names[i], "price": pp_night[i]}, f)
+                f.write("\n")
+
+    print("JSON file created")
+    #close the file
+    f.close()
 
 
 
@@ -101,7 +162,9 @@ def main():
 
     url = construct_url(location, Checkin, Checkout, adults, children, infants)
 
-    scrape_page(url)
+    headers, names, pp_night = scrape_page(url)
+
+    make_json(headers, names, pp_night)
 
 
 if __name__ == "__main__":
