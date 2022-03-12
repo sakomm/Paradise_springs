@@ -14,6 +14,8 @@ params = {
     'infants': "",
 }
 
+# TODO --> Get the ammenaties of the property and also the number of reviews and the number of ratings and the redirect link to the property
+
 # params['location'] = "Charlottesville--Virginia--United States"
 # params['Check-in'] = "april"
 # params['Check-out'] = "march"
