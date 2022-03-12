@@ -1,8 +1,9 @@
+from aiohttp import content_disposition_filename
 import requests
-import bs4 
+import bs4
 import json
 import time
-import datetime as dt 
+import datetime as dt
 
 params = {
     'location': "",
@@ -26,6 +27,8 @@ params = {
 Consturct the URL to scrape from the parameters
 https://www.airbnb.com/s/Charlottesville--Virginia--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D=april&flexible_trip_dates%5B%5D=march&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&query=Charlottesville%2C%20Virginia%2C%20United%20States&place_id=ChIJj6RQ6i2Gs4kR_HSLw5bwhpA&adults=1&children=1&infants=1
 """
+
+
 def construct_url(location, Checkin, Checkout, adults, children, infants):
     params["location"] = location
     params["Check-in"] = Checkin
@@ -38,6 +41,7 @@ def construct_url(location, Checkin, Checkout, adults, children, infants):
 
     return url
 
+
 def construct_location():
     #order is city, state, country
     input_city = input("Enter the city: ")
@@ -48,13 +52,43 @@ def construct_location():
 
     return location
 
+
+def scrape_page(url):
+    # print(url)
+    # print(params)
+
+    # get all the names of the properties and store in json file
+    print("Scraping page...")
+    # content seems to be stored in a nested class called _8ssblpx and _gigle7 cause that make sense somehow???????
+
+    # get the html of the page
+    page = requests.get(url)
+    # print(page.text) dont run that, fucking takes forever
+    # parse the html
+    content = page.content
+    # print(content)
+    soup = bs4.BeautifulSoup(content, "lmxl")
+
+    return 0
+
+
+
+
 def main():
-    location = construct_location()
-    Checkin = input("Enter the checkin date or press enter: ")
-    Checkout = input("Enter the checkout date or press enter: ")
-    adults = input("Enter the number of adults: ")
-    children = input("Enter the number of children: ")
-    infants = input("Enter the number of infants: ")
+    
+    # location = construct_location()
+    # Checkin = input("Enter the checkin date or press enter: ")
+    # Checkout = input("Enter the checkout date or press enter: ")
+    # adults = input("Enter the number of adults: ")
+    # children = input("Enter the number of children: ")
+    # infants = input("Enter the number of infants: ")
+
+    location = "Charlottesville--Virginia--United States"
+    Checkin = ""
+    Checkout = ""
+    adults = "1"
+    children = "1"
+    infants = "1"
 
     if (Checkin == "" or Checkout == ""):
         # make checkin current month
@@ -62,13 +96,12 @@ def main():
         # make checkout next month
         month_plus = dt.datetime.now() + dt.timedelta(days=30)
         Checkout = month_plus.strftime("%B")
-    
+
     print(f"Checkin: {Checkin} && Checkout: {Checkout}")
 
     url = construct_url(location, Checkin, Checkout, adults, children, infants)
 
-    print(url)
-    
+    scrape_page(url)
 
 
 if __name__ == "__main__":
