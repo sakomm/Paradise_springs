@@ -54,12 +54,12 @@ def construct_location():
 
     return location
 
-def get_text(element):
-    to_text = []
-    for text in element:
-        to_text.append(text.text)
+# def get_text(element):
+#     to_text = []
+#     for text in element:
+#         to_text.append(text.text)
 
-    return to_text
+#     return to_text
 
 """
 get price of the property parse string and get the price
@@ -94,59 +94,41 @@ def scrape_page(url):
     parent = soup.find_all("div", class_="_8ssblpx")    
     child = soup.find_all("div", class_="_gig1e7")
 
-    # exteracting data make graceful error handling later TODO
+    full_rentals = []
+
+    for prop in child:
+        header = prop.find("div", class_="mj1p6c8 dir dir-ltr").text
+        name = prop.find("div", class_="c1bx80b8 dir dir-ltr").text
+        price = (prop.find("div", class_="p1qe1cgb dir dir-ltr").text)
+        try:
+            ratings = prop.find("div", class_="sglmc5a dir dir-ltr").text
+        except:
+            ratings = "No ratings"
+        
+        amen_r1 = prop.find_all("div", class_="i1wgresd dir dir-ltr")[0].text.split("·")
+
+        try:
+            amen_r2 = prop.find_all("div", class_="i1wgresd dir dir-ltr")[1].text.split("·")
+        except:
+            amen_r2 = "No amenities"
+        
+        tmp = [header, name, price, ratings, amen_r1, amen_r2]
+        full_rentals.append(tmp)
     
-    #get the header of the property 
-    headers = soup.find_all("div", class_="mj1p6c8 dir dir-ltr")
-    #print only the text of the header of the property not the whole header
-    headers = get_text(headers)
-    # pprint(headers)
-
-    names = soup.find_all("div", class_="c1bx80b8 dir dir-ltr")
-    names = get_text(names)
-    # pprint(names)
-    
-    # get the price of the property
-    pp_night = soup.find_all("div", class_="p1qe1cgb dir dir-ltr")
-    pp_night = get_price(get_text(pp_night))
-
-    #get the list of amenities
-    amenities = soup.find_all("div", class_="sglmc5a dir dir-ltr")
-    amenities = get_text(amenities)
-    print(amenities)
-
-    # get the number of reviews
+    pprint(full_rentals)
+    return full_rentals
 
 
-    #get the number of ratings
-
-    # get the url of the property
-
-    # get the number of beds
-
-    # get the number of bathrooms
-
-    # pprint(pp_night)
-   
-
-    return headers, names, pp_night
-
-def make_json(headers, names, pp_night):
+def make_json(full_rentals):
     """
     make a json file of the scraped data
     """
     # make a json file of the scraped data each property should have its own section all index 0 are tougether
     with open("airbnb_scrape.json", "a") as f:
 
-        # #make each property its own section grab the header and name of the property and the price of the property and write as one json object
-        for i in range(20):
-            # print(f"{headers[i]}, {names[i]}, {pp_night[i]}")
-            if i != 19:
-                json.dump({"header": headers[i], "name": names[i], "price": pp_night[i]}, f)
-                f.write(",\n")
-            else:
-                json.dump({"header": headers[i], "name": names[i], "price": pp_night[i]}, f)
-                f.write("\n")
+        for rentals in full_rentals:
+            json.dump({"property":rentals}, f)
+            f.write("\n")
 
     print("JSON file created")
     #close the file
@@ -181,9 +163,10 @@ def main():
 
     url = construct_url(location, Checkin, Checkout, adults, children, infants)
 
-    headers, names, pp_night = scrape_page(url)
+    full_rentals = scrape_page(url)
 
-    make_json(headers, names, pp_night)
+    make_json(full_rentals)
+
 
 
 if __name__ == "__main__":
