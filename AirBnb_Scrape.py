@@ -14,7 +14,7 @@ params = {
     'infants': "",
 }
 
-# TODO --> Get the ammenaties of the property and also the number of reviews and the number of ratings and the redirect link to the property
+# TODO --> Offset to handle the webpages + Get the ammenaties of the property and also the number of reviews and the number of ratings and the redirect link to the property
 
 # params['location'] = "Charlottesville--Virginia--United States"
 # params['Check-in'] = "april"
@@ -109,6 +109,23 @@ def scrape_page(url):
     # get the price of the property
     pp_night = soup.find_all("div", class_="p1qe1cgb dir dir-ltr")
     pp_night = get_price(get_text(pp_night))
+
+    #get the list of amenities
+    amenities = soup.find_all("div", class_="sglmc5a dir dir-ltr")
+    amenities = get_text(amenities)
+    print(amenities)
+
+    # get the number of reviews
+
+
+    #get the number of ratings
+
+    # get the url of the property
+
+    # get the number of beds
+
+    # get the number of bathrooms
+
     # pprint(pp_night)
    
 
