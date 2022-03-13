@@ -1,3 +1,4 @@
+import sys
 import requests
 import bs4
 import json
@@ -104,12 +105,12 @@ def scrape_page(url):
     return full_rentals
 
 
-def make_json(full_rentals):
+def make_json(full_rentals, location):
     """
     make a json file of the scraped data
     """
     # make a json file of the scraped data each property should have its own section all index 0 are tougether
-    with open("airbnb_scrape.json", "a") as f:
+    with open("f{location}_airbnb_scrape.json", "a") as f:
 
         for rentals in full_rentals:
             json.dump({"property":rentals}, f)
@@ -122,19 +123,20 @@ def make_json(full_rentals):
 
 def main():
     
-    # location = construct_location()
-    # Checkin = input("Enter the checkin date or press enter: ")
-    # Checkout = input("Enter the checkout date or press enter: ")
-    # adults = input("Enter the number of adults: ")
-    # children = input("Enter the number of children: ")
-    # infants = input("Enter the number of infants: ")
+    location = construct_location()
+    Checkin = input("Enter the checkin date or press enter: ")
+    Checkout = input("Enter the checkout date or press enter: ")
+    adults = input("Enter the number of adults: ")
+    children = input("Enter the number of children: ")
+    infants = input("Enter the number of infants: ")
 
-    location = "Charlottesville--Virginia--United States"
-    Checkin = ""
-    Checkout = ""
-    adults = "1"
-    children = "1"
-    infants = "1"
+    # location = sys.argv[1]
+    # Checkin = sys.argv[2]
+    # Checkout = sys.argv[3]
+    # adults = sys.argv[4]
+    # children = sys.argv[5]
+    # infants = sys.argv[6]
+
 
     if (Checkin == "" or Checkout == ""):
         # make checkin current month
@@ -151,7 +153,7 @@ def main():
         offset = 20 * i
         url_offset = f"{url}&offset={offset}"
     
-        full_rentals = scrape_page(url)
+        full_rentals = scrape_page(url,location)
         make_json(full_rentals)
 
 
