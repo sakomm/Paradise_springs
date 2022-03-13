@@ -1,8 +1,6 @@
-from pprint import pprint
 import requests
 import bs4
 import json
-import time
 import datetime as dt
 
 params = {
@@ -14,17 +12,8 @@ params = {
     'infants': "",
 }
 
-# TODO --> Offset to handle the webpages + Get the ammenaties of the property and also the number of reviews and the number of ratings and the redirect link to the property
+# TODO --> Offset to handle the webpages
 
-# params['location'] = "Charlottesville--Virginia--United States"
-# params['Check-in'] = "april"
-# params['Check-out'] = "march"
-# params['adults'] = "1"
-# params['children'] = "1"
-# params['infants'] = "1"
-
-# url = f"https://www.airbnb.com/s/{params['location']}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D={params['Check-in']}&flexible_trip_dates%5B%5D={params['Check-out']}&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&query={params['location']}&{params['adults']}&children={params['children']}&infants={params['infants']}"
-# print(url)
 """
 Consturct the URL to scrape from the parameters
 https://www.airbnb.com/s/Charlottesville--Virginia--United-States/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&flexible_trip_dates%5B%5D=april&flexible_trip_dates%5B%5D=march&flexible_trip_lengths%5B%5D=weekend_trip&date_picker_type=calendar&query=Charlottesville%2C%20Virginia%2C%20United%20States&place_id=ChIJj6RQ6i2Gs4kR_HSLw5bwhpA&adults=1&children=1&infants=1
@@ -54,32 +43,23 @@ def construct_location():
 
     return location
 
-# def get_text(element):
-#     to_text = []
-#     for text in element:
-#         to_text.append(text.text)
-
-#     return to_text
 
 """
 get price of the property parse string and get the price
 
 given $122\xa0/ night$122 per night' is $122 per night
 """
-def get_price(string):
-    plist = []
-    for prices in string:
-        ppn = prices.split(" ")
-        plist.append(f"{ppn[-3][5::]} {ppn[-2]} {ppn[-1]}")
+def get_price(str_price):
+    ppn = str_price.split(" ")
+    str_price = (f"{ppn[-3][5::]} {ppn[-2]} {ppn[-1]}")
 
-    return plist
+    return str_price
 
 def scrape_page(url):
     # print(url)
     # print(params)
 
     # get all the names of the properties and store in json file
-    print("Scraping page...")
     # content seems to be stored in a nested class called _8ssblpx and _gig1e7 cause that make sense somehow???????
 
     # get the html of the page
@@ -99,7 +79,7 @@ def scrape_page(url):
     for prop in child:
         header = prop.find("div", class_="mj1p6c8 dir dir-ltr").text
         name = prop.find("div", class_="c1bx80b8 dir dir-ltr").text
-        price = (prop.find("div", class_="p1qe1cgb dir dir-ltr").text)
+        price = get_price(prop.find("div", class_="p1qe1cgb dir dir-ltr").text)
         try:
             ratings = prop.find("div", class_="sglmc5a dir dir-ltr").text
         except:
@@ -112,10 +92,15 @@ def scrape_page(url):
         except:
             amen_r2 = "No amenities"
         
-        tmp = [header, name, price, ratings, amen_r1, amen_r2]
+        room_link =  prop.find("div", class_="cm4lcvy dir dir-ltr").find("a").get("href")
+        room_link = f"https://www.airbnb.com{room_link}"
+        
+        image_link = prop.find("div", class_="_4626ulj").find("img").get("src")
+        
+        tmp = [header, name, price, ratings, amen_r1, amen_r2, room_link, image_link]
         full_rentals.append(tmp)
     
-    pprint(full_rentals)
+    # pprint(full_rentals)
     return full_rentals
 
 
@@ -130,7 +115,6 @@ def make_json(full_rentals):
             json.dump({"property":rentals}, f)
             f.write("\n")
 
-    print("JSON file created")
     #close the file
     f.close()
 
@@ -163,9 +147,12 @@ def main():
 
     url = construct_url(location, Checkin, Checkout, adults, children, infants)
 
-    full_rentals = scrape_page(url)
-
-    make_json(full_rentals)
+    for i in range(15):
+        offset = 20 * i
+        url_offset = f"{url}&offset={offset}"
+    
+        full_rentals = scrape_page(url)
+        make_json(full_rentals)
 
 
 
