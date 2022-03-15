@@ -1,0 +1,29 @@
+ #back{
+    
+     background-image:url("background1.jpg");
+     height:60vh;
+ }
+
+ h1{
+     padding-top: 2%;
+     padding-left: 2%;;
+ }
+
+ .search{
+    background-color: white;
+    height:6vh;
+    width:50vw;
+    border-color:gray;
+    border-style: solid;
+    
+    
+ }
+
+ .center {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
