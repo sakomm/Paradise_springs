@@ -1,0 +1,11 @@
+#type-location{
+    background-color:white;
+    border-color:lightblue;
+    border-style:solid;
+    height:20vw;
+    width: 18%;
+    margin-top: 2vh;
+    margin-left: 2vh;
+    border-radius:2%;
+    display:inline-block;
+}

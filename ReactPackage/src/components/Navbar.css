@@ -1,5 +1,4 @@
 .navbar-container{
-    background:lightseagreen;
     height:80px;
     display:flex;
     justify-content:center;
@@ -7,12 +6,14 @@
     width:100%;
     margin-bottom:0px;
     align-items:center;
+    background-color: white;
 }
 
 .logo{
     font-size: 4vh;
-    color:rgb(14, 163, 14);
+    color:rgb(14, 24, 163);
     margin-left:20px;
+    text-decoration: none;
     
 }
 #menu-icon{
@@ -34,11 +35,11 @@
 .nav-links{
    text-decoration: none; 
    color:black;
-   padding:0.5rem 1rem;
+   padding:1.2rem 1rem;
 }
 
 .nav-links:hover{
-    background-color: white ;
+    background-color: rgb(211, 249, 250) ;
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }
@@ -81,7 +82,7 @@
 
     .nav-menu.mobile{
         left:0;
-        background-color:#01796F;
+        background-color: rgb(211, 249, 250);
         z-index:1;
         opacity:1;
         transition: all 0.5s ease;

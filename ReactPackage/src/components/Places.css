@@ -1,0 +1,8 @@
+#places{
+    background-color: white;
+    margin:-60px 56px -40px;
+    border-radius:8px 8px 8px 8px;
+    background-color: white;
+    z-index:2;
+        position:relative;
+}

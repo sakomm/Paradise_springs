@@ -1,0 +1,6 @@
+#end-of-page{
+    height:300px;
+    background-color:rgb(235, 227, 227);
+    z-index:1;
+    position:relative;
+}
