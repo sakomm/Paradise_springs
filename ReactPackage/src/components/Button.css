@@ -1,0 +1,31 @@
+#circle{
+   display:block;
+   
+    
+}
+#circleButton{
+    background-color:white;
+    border-color:lightblue;
+    border-style:solid;
+    height:50px;
+    width:50px;
+    margin-top:110px;
+    margin: 110px 2vh;
+    border-radius:50%;
+    vertical-align: middle;
+    display:inline-block;
+    text-align:center;
+    position:relative;
+    white-space: nowrap
+    
+}
+
+#circleButton:hover{
+    background-color:lightblue;
+}
+
+#border{
+    margin:0;
+    padding:0;
+    display:inline-block;
+}

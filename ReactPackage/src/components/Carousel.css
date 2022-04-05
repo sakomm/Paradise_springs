@@ -1,0 +1,21 @@
+#c-container{
+    width:100%;
+    
+}
+.carousel{
+    width:100%;
+     display:flex;
+     
+}
+
+#postings-only{
+    
+    display: flex;
+    align-items: flex-start;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    overflow:hidden;
+   
+  
+}

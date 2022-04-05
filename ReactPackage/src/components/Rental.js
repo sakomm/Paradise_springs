@@ -1,10 +1,15 @@
 import React from 'react'
 import './Rental.css'
 
-function Rental(){
+
+
+
+function Rental({description, price, photo}){
     return(
         <div id = "post">
-            <p>Rental Posting</p>            
+            <img class="rental-pic" src= {photo}></img>   
+            <h3>{price}</h3>        
+            <p>{description}</p>
         </div>
     );
 }
