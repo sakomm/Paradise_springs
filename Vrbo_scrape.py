@@ -1,9 +1,13 @@
 from pprint import pprint
+import time
 import bs4
 import requests 
 import json
 import datetime
 import timeit
+
+import selenium
+from selenium import webdriver
 
 start,end = 0,0
 
@@ -65,21 +69,18 @@ def prompt_user():
 
 def scrape_vrbo(url):
     start = timeit.default_timer()
-
     #get the html
-    response = requests.get(url)
+    # response = requests.get(url)
+    # #parse the html
+    # soup = bs4.BeautifulSoup(response.text, 'html.parser')
+    # rentals = soup.find_all('div', class_="Hit")
 
-    #parse the html
-    soup = bs4.BeautifulSoup(response.text, 'html.parser')
+    driver = webdriver.Firefox()
+    driver.get(url)
 
-    #find the div with the data tag Waypoint form 1-10
-
-    rentals = soup.find_all('div', class_="HitCollection")
-
-    for i,x in enumerate(rentals):
-        print(i)
-        print(x)
-        print("\n")
+    print(driver.page_source)
+    time.sleep(5)
+    
 
 
     #firnd the type of place and distance to location
@@ -111,6 +112,8 @@ def main():
 
     print('Time: ', end - start)  
     print(url)
+
+    return 0
 
 if __name__ == "__main__":
     main()

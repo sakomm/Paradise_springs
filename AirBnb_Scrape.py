@@ -110,7 +110,7 @@ def make_json(full_rentals, location):
     make a json file of the scraped data
     """
     # make a json file of the scraped data each property should have its own section all index 0 are tougether
-    with open("f{location}_airbnb_scrape.json", "a") as f:
+    with open(f"/home/saikommuri/Documents/CoDiNG_GeNiuS/Paradise_springs/JSON_Outputs/{location}_airbnb_scrape.json", "a") as f:
 
         for rentals in full_rentals:
             json.dump({"property":rentals}, f)
@@ -121,31 +121,32 @@ def make_json(full_rentals, location):
 
 
 
+
 def main():
     
-    location = construct_location()
-    Checkin = input("Enter the checkin date or press enter: ")
-    Checkout = input("Enter the checkout date or press enter: ")
-    adults = input("Enter the number of adults: ")
-    children = input("Enter the number of children: ")
-    infants = input("Enter the number of infants: ")
+    # location = construct_location()
+    # Checkin = input("Enter the checkin date or press enter: ")
+    # Checkout = input("Enter the checkout date or press enter: ")
+    # adults = input("Enter the number of adults: ")
+    # children = input("Enter the number of children: ")
+    # infants = input("Enter the number of infants: ")
 
-    # location = sys.argv[1]
+    location = sys.argv[1]
     # Checkin = sys.argv[2]
     # Checkout = sys.argv[3]
-    # adults = sys.argv[4]
-    # children = sys.argv[5]
-    # infants = sys.argv[6]
+    adults = sys.argv[2]
+    children = sys.argv[3]
+    infants = sys.argv[4]
 
 
-    if (Checkin == "" or Checkout == ""):
+ 
         # make checkin current month
-        Checkin = dt.datetime.now().strftime("%B")
+    Checkin = dt.datetime.now().strftime("%B")
         # make checkout next month
-        month_plus = dt.datetime.now() + dt.timedelta(days=30)
-        Checkout = month_plus.strftime("%B")
+    month_plus = dt.datetime.now() + dt.timedelta(days=30)
+    Checkout = month_plus.strftime("%B")
 
-    print(f"Checkin: {Checkin} && Checkout: {Checkout}")
+    # print(f"Checkin: {Checkin} && Checkout: {Checkout}")
 
     url = construct_url(location, Checkin, Checkout, adults, children, infants)
 
@@ -153,9 +154,10 @@ def main():
         offset = 20 * i
         url_offset = f"{url}&offset={offset}"
     
-        full_rentals = scrape_page(url,location)
-        make_json(full_rentals)
+        full_rentals = scrape_page(url_offset)
+        make_json(full_rentals, location)
 
+    print("complete")
 
 
 if __name__ == "__main__":
