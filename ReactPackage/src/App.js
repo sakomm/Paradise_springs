@@ -19,6 +19,7 @@ function App() {
      <Searchbar />
      <Places />
      <Footer />
+     
     </div>
   );
 }
