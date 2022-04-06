@@ -1,3 +1,6 @@
 #sidebar {
     border-style: solid;
+    height: 62vh;
+    width: 20%;
+    float: left;
 }
