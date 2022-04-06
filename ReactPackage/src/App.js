@@ -6,19 +6,12 @@ import Recommended from './components/Recommended'
 import Navbar from './components/Navbar'
 import Places from './components/Places'
 import Footer from './components/Footer'
+import ResultsPage from './Results Page/ResultsPage'
 
 function App() {
   return (
     <div className="App">
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path ="/" exact></Route>
-      </Routes>
-    </Router>
-     <Searchbar />
-     <Places />
-     <Footer />
+    <ResultsPage />
      
     </div>
   );
