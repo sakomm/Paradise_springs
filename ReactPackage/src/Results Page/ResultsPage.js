@@ -8,8 +8,10 @@ function ResultsPage(){
     return(
         <div id="resultspage">
         <TopBar />
+        <div id = "section-one">
         <SideBar />
         <Result />
+        </div>
         </div>
     );
 }
