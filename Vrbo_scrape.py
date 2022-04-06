@@ -1,3 +1,4 @@
+from calendar import month
 from pprint import pprint
 import time
 import bs4
@@ -6,8 +7,7 @@ import json
 import datetime
 import timeit
 
-import selenium
-from selenium import webdriver
+
 
 start,end = 0,0
 
@@ -20,25 +20,21 @@ params = {
     'pets': "",
 }
 
-"""
-Consturct the URL to scrape from the parameters
-
-location
-Check-in
-Check-out
-adults
-children
-
-if Check-in and Check-out are not provided dont include them in the URL
-
-example:
-https://www.vrbo.com/search/keywords:dallas-texas-united-states/minNightlyPrice/0?filterByTotalPrice=false&petIncluded=false&ssr=true&adultsCount=1&childrenCount=1
-"""
 def url_gen(location, check_in,check_out, adults, children, pets):
+    check_in = check_in
+    check_out = check_out
+
     if(check_in == "" and check_out == ""):
-        url = f"https://www.vrbo.com/search/keywords:{location}/minNightlyPrice/0?filterByTotalPrice=false&petIncluded={pets}&ssr=true&adultsCount={adults}&childrenCount={children}"
-    else:
-        url = f"https://www.vrbo.com/search/keywords:{location}/minNightlyPrice/0?filterByTotalPrice=false&petIncluded={pets}&ssr=true&adultsCount={adults}&childrenCount={children}&checkInDate={check_in}&checkOutDate={check_out}"
+        today = datetime.date.today()
+        tomorow = today + datetime.timedelta(days=30)
+        check_in = today.strftime("%Y-%m-%d")
+        check_out = tomorow.strftime("%Y-%m-%d")
+
+    #https://www.vrbo.com/search/keywords:dallas-texas-united-states/arrival:2022-04-22/departure:2022-04-30/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount=1&childrenCount=1&petsCount=false
+
+    url = f"https://www.vrbo.com/search/keywords:{location}/arrival:{check_in}/departure:{check_out}/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount={adults}&childrenCount={children}&petsCount=false"
+    return url
+
     return url
 
 def location_gen():
@@ -69,44 +65,30 @@ def prompt_user():
 
 def scrape_vrbo(url):
     start = timeit.default_timer()
-    #get the html
-    # response = requests.get(url)
-    # #parse the html
-    # soup = bs4.BeautifulSoup(response.text, 'html.parser')
-    # rentals = soup.find_all('div', class_="Hit")
 
-    driver = webdriver.Firefox()
-    driver.get(url)
+    response = requests.get(url)
+    soup = bs4.BeautifulSoup(response.text, 'html.parser')
 
-    print(driver.page_source)
-    time.sleep(5)
-    
-
-
-    #firnd the type of place and distance to location
-
-
-    #find the price
-    #find the rating
-    #find the number of reviews
-    #find the number of bedrooms
-    #find the number of bathrooms
-
+    # write to file
+    with open('vrbo_scrape.txt', 'w') as f:
+        f.write(str(soup))
 
     end = timeit.default_timer()
+    print('Time: ', end - start)
 
 
 def main():
     # prompt_user()
     # location = location_gen()
     location = "dallas-texas-united-states"
-    params["Check-in"] = ""
-    params["Check-out"] = ""
+    params["Check-in"] = "2022-04-22"
+    params["Check-out"] = "2022-04-30"
     params["adults"] = "1"
     params["children"] = "1"
     params["pets"] = "false"
 
     url = url_gen(location, params["Check-in"], params["Check-out"], params["adults"], params["children"], params["pets"])
+    print(url)
 
     scrape_vrbo(url)
 
@@ -117,3 +99,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
