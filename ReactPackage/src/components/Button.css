@@ -1,7 +1,7 @@
 #circle{
-   display:flex;
+   display:flexbox;
    align-items: center;
-   
+  
     
 }
 #circleButton{

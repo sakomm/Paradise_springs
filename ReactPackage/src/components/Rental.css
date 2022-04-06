@@ -1,21 +1,36 @@
 #post{
     background-color:transparent;
     height:20vw;
-    width: 25%;
+    width: 20%;
+    border-radius: 2%;
     padding: 0 1vh;
-    
     display:inline-flex;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
+   flex-direction: column;
    
 }
 
 .rental-pic{
-    width:100%;
+   
     object-fit:cover;
-    border-color:lightblue;
-    border-style:solid;
-    border-radius:2%;
+    display:fle;
+    width:100%;
+    height:70%;
+    border-radius: 2%;
+}
+
+p{
+    align-self: flex-start;
+    text-align:center;
+    white-space: pre-wrap;
+    padding-top:1rem;
+    margin:0;
+}
+
+#price{
+    padding-top: 0.2rem;
+    
 }
