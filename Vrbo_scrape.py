@@ -1,13 +1,15 @@
 from calendar import month
-from multiprocessing.connection import wait
 from pprint import pprint
 
 import selenium
 from selenium import webdriver
+from selenium.webdriver.chromium import options
+
 
 import datetime
 import timeit
 
+import time
 
 start, end = 0, 0
 
@@ -69,11 +71,39 @@ def prompt_user():
 # scraping is impossible with requests library because of the way the website is designed and the way it is coded
 # moving to selenium
 def scrape_vrbo(url):
-    driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver")
+
+    #https://stackoverflow.com/questions/46744968/how-to-suppress-console-error-warning-info-messages-when-executing-selenium-pyth
+
+    options = webdriver.ChromeOptions()
+    options.add_argument('--log-level=3')
+    driver = webdriver.Chrome(executable_path=r'C:\bin\chromedriver.exe', options=options)
     driver.get(url)
 
-    wait(10)
+    # wait for page to load
+
+    # use selenium to scroll down the page
+
+    #scroll through the page to load all the listings
+    curPoint = 0
+    for i in range(0, 14600, 100):
+        driver.execute_script(f"window.scrollTo(0,{i});")
+        curPoint = i
+        time.sleep(.05)
+     
+    rental_images 
+
+    rental_names = driver.execute_script(
+        "return document.getElementsByClassName(\"HitInfo__headline hover-text\");")
+    
+    
+    for name in rental_names:
+        print(name.text)
+
+
+    time.sleep(6)
     driver.close()
+    
+
 
 
 def main():
@@ -89,10 +119,10 @@ def main():
     url = url_gen(location, params["Check-in"], params["Check-out"],
                   params["adults"], params["children"], params["pets"])
 
+    print(url)
     scrape_vrbo(url)
 
     print('Time: ', end - start)
-    print(url)
 
     return 0
 
