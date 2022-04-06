@@ -34,7 +34,7 @@ def url_gen(offset, location, check_in, check_out, adults, children, pets):
 
     # https://www.vrbo.com/search/keywords:dallas-texas-united-states/arrival:2022-04-22/departure:2022-04-30/minNightlyPrice/0/minTotalPrice/0?    filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount=1&childrenCount=1&petsCount=false
 
-    for i in range(1, offset):
+    for i in range(1, offset+1):
         url = f"https://www.vrbo.com/search/keywords:{location}/page:{i}/arrival:{check_in}/departure:{check_out}/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount={adults}&childrenCount={children}&petsCount=false"
 
         all_urls.append(url)
@@ -77,16 +77,13 @@ def scrape_vrbo(url):
     options.add_argument('--log-level=3')
 
     # when on linux use this
-    driver = webdriver.Chrome()
+    #driver = webdriver.Chrome()
 
-    #driver = webdriver.Chrome(executable_path=r'C:\bin\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(
+        executable_path=r'C:\bin\chromedriver.exe', options=options)
+
     driver.get(url)
 
-    # wait for page to load
-
-    # use selenium to scroll down the page
-
-    # scroll through the page to load all the listings
     curPoint = 0
     for i in range(0, 14600, 100):
         driver.execute_script(f"window.scrollTo(0,{i});")
@@ -97,7 +94,8 @@ def scrape_vrbo(url):
     # rental_images = driver.execute_script(
     #     "return x = document.getElementsByClassName(\"SimpleImageCarousel__image SimpleImageCarousel__image--cur\"); for(let i = 0; i<x.length; i++){ console.log(x[i].style.backgroundImage)}")
 
-    rental_url = "test"
+    rental_url = driver.execute_script(
+        "return document.getElementsByClassName(\"media-flex__content\");")
 
     # get all the listings
     rental_images = driver.execute_script(
@@ -114,9 +112,10 @@ def scrape_vrbo(url):
 
     rentals = []
 
-    for image, name, type_place, beds in zip(rental_images, rental_names, rental_type, rental_beds):
+    for url, image, name, type_place, beds in zip(rental_url, rental_images, rental_names, rental_type, rental_beds):
         tmp = []
 
+        tmp.append(url.get_attribute("href"))
         tmp.append(image.get_attribute("style"))
         tmp.append(name.text)
         tmp.append(type_place.text)
