@@ -8,8 +8,10 @@ function Rental({description, price, photo}){
     return(
         <div id = "post">
             <img class="rental-pic" src= {photo}></img>  
-            <p>Entire residential home in Charlottesville</p>
-            <p id="price">{price}</p>
+            <p id="property" >Entire residential home in Charlottesville</p>
+            <p>Safety Rating:</p>
+            <p id="price">${price}/night</p>
+            
         </div>
     );
 }
