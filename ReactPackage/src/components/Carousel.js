@@ -2,40 +2,41 @@ import React, {useState} from 'react'
 import './Carousel.css'
 import Rental from './Rental'
 import Button from './Button'
+import DisplayRentals from './DisplayRentals';
 
-function Carousel(){
+class Carousel extends React.Component{
+state ={
+    data1: "fa-solid fa-angle-right",
+    data2: "fa-solid fa-angle-left"
 
-const [index, setIndex] = useState(0);
+}
 
-const slideLeft = () => {
-    setIndex(index - 1);
-};
+slideRight = () =>{
+    var slider = document.getElementById("#post");
+    slider.scrollLeft = slider.scrollLeft + 500;
+}
 
-const slideRight = () => {
-    setIndex(index + 1);
-};
+slideLeft = () =>{
+    var slider = document.getElementById("#post");
+    slider.scrollLeft = slider.scrollLeft + 500;
+}
+
+this.sildeLeft =this.slideLeft.bind(this);
+
+render(){
     return(
-        <div id="end-of-page">
-                     <div id="c-container">
+        <div>
+            <div id="c-container">
                 <div className="carousel">
-                    <Button onClick = {slideLeft}/>   
+                    <Button icon ={this.state.data2} onClick = {this.slideLeft}/>   
                     <div id="postings-only">
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
-                        <Rental />
+                    <DisplayRentals />
                     </div>
-                    <Button onClick = {slideRight}/>
+                    <Button icon ={this.state.data1}/>
                  </div> 
             </div> 
         </div>
     );
 }
-
+}
 export default Carousel;

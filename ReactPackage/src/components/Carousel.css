@@ -5,7 +5,7 @@
 .carousel{
     width:100%;
      display:flex;
-     
+  
 }
 
 #postings-only{
@@ -15,7 +15,13 @@
     white-space: nowrap;
     width: 100%;
     position: relative;
-    overflow:hidden;
-   
+    overflow-x:scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
   
 }
+
+#postings-only::-webkit-scrollbar {
+    display: none;
+  }
+ 
