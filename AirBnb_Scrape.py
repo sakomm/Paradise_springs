@@ -50,11 +50,14 @@ get price of the property parse string and get the price
 
 given $122\xa0/ night$122 per night' is $122 per night
 """
+
+
 def get_price(str_price):
     ppn = str_price.split(" ")
     str_price = (f"{ppn[-3][5::]} {ppn[-2]} {ppn[-1]}")
 
     return str_price
+
 
 def scrape_page(url):
     # print(url)
@@ -70,9 +73,9 @@ def scrape_page(url):
     content = page.content
     # print(content)
     soup = bs4.BeautifulSoup(content, "html.parser")
-    
+
     # get all attributes of the class _8ssblpx and its child _gig1e7
-    parent = soup.find_all("div", class_="_8ssblpx")    
+    parent = soup.find_all("div", class_="_8ssblpx")
     child = soup.find_all("div", class_="_gig1e7")
 
     full_rentals = []
@@ -85,22 +88,26 @@ def scrape_page(url):
             ratings = prop.find("div", class_="sglmc5a dir dir-ltr").text
         except:
             ratings = "No ratings"
-        
-        amen_r1 = prop.find_all("div", class_="i1wgresd dir dir-ltr")[0].text.split("·")
+
+        amen_r1 = prop.find_all(
+            "div", class_="i1wgresd dir dir-ltr")[0].text.split("·")
 
         try:
-            amen_r2 = prop.find_all("div", class_="i1wgresd dir dir-ltr")[1].text.split("·")
+            amen_r2 = prop.find_all(
+                "div", class_="i1wgresd dir dir-ltr")[1].text.split("·")
         except:
             amen_r2 = "No amenities"
-        
-        room_link =  prop.find("div", class_="cm4lcvy dir dir-ltr").find("a").get("href")
+
+        room_link = prop.find(
+            "div", class_="cm4lcvy dir dir-ltr").find("a").get("href")
         room_link = f"https://www.airbnb.com{room_link}"
-        
+
         image_link = prop.find("div", class_="_4626ulj").find("img").get("src")
-        
-        tmp = [header, name, price, ratings, amen_r1, amen_r2, room_link, image_link]
+
+        tmp = [header, name, price, ratings,
+               amen_r1, amen_r2, room_link, image_link]
         full_rentals.append(tmp)
-    
+
     # pprint(full_rentals)
     return full_rentals
 
@@ -113,17 +120,15 @@ def make_json(full_rentals, location):
     with open(f"/home/saikommuri/Documents/CoDiNG_GeNiuS/Paradise_springs/JSON_Outputs/{location}_airbnb_scrape.json", "a") as f:
 
         for rentals in full_rentals:
-            json.dump({"property":rentals}, f)
+            json.dump({"property": rentals}, f)
             f.write("\n")
 
-    #close the file
+    # close the file
     f.close()
 
 
-
-
 def main():
-    
+
     # location = construct_location()
     # Checkin = input("Enter the checkin date or press enter: ")
     # Checkout = input("Enter the checkout date or press enter: ")
@@ -138,11 +143,9 @@ def main():
     children = sys.argv[3]
     infants = sys.argv[4]
 
-
- 
-        # make checkin current month
+    # make checkin current month
     Checkin = dt.datetime.now().strftime("%B")
-        # make checkout next month
+    # make checkout next month
     month_plus = dt.datetime.now() + dt.timedelta(days=30)
     Checkout = month_plus.strftime("%B")
 
@@ -153,7 +156,7 @@ def main():
     for i in range(15):
         offset = 20 * i
         url_offset = f"{url}&offset={offset}"
-    
+
         full_rentals = scrape_page(url_offset)
         make_json(full_rentals, location)
 
