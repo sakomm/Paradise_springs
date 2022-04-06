@@ -11,7 +11,8 @@ import ResultsPage from './Results Page/ResultsPage'
 function App() {
   return (
     <div className="App">
-    <ResultsPage />
+     <ResultsPage />
+     
      
     </div>
   );

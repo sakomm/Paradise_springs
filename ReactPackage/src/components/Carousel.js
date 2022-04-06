@@ -5,34 +5,42 @@ import Button from './Button'
 import DisplayRentals from './DisplayRentals';
 
 class Carousel extends React.Component{
-state ={
-    data1: "fa-solid fa-angle-right",
-    data2: "fa-solid fa-angle-left"
+    constructor(props){
+        super(props);
+        this.state ={
+            data1: "fa-solid fa-angle-right",
+            data2: "fa-solid fa-angle-left"
+        
+        }
+        this.slideLeft = this.slideLeft.bind(this);
+        this.slideRight = this.slideRight.bind(this);
+    }
 
-}
+
 
 slideRight = () =>{
-    var slider = document.getElementById("#post");
-    slider.scrollLeft = slider.scrollLeft + 500;
+        var slider = document.getElementById("postings-only");
+        slider.scrollLeft = slider.scrollLeft + slider.offsetWidth;
 }
+
 
 slideLeft = () =>{
-    var slider = document.getElementById("#post");
-    slider.scrollLeft = slider.scrollLeft + 500;
+    var slider = document.getElementById("postings-only");
+    slider.scrollLeft = slider.scrollLeft - slider.offsetWidth;
 }
 
-this.sildeLeft =this.slideLeft.bind(this);
+
 
 render(){
     return(
         <div>
             <div id="c-container">
                 <div className="carousel">
-                    <Button icon ={this.state.data2} onClick = {this.slideLeft}/>   
+                    <Button icon ={this.state.data2} slide = {this.slideLeft}/>   
                     <div id="postings-only">
                     <DisplayRentals />
                     </div>
-                    <Button icon ={this.state.data1}/>
+                    <Button icon ={this.state.data1} slide = {this.slideRight}/>
                  </div> 
             </div> 
         </div>

@@ -1,7 +1,8 @@
 #result {
     border-style: solid;
     height: 62vh;
-    width: 79.25%;
+    width: 50%;
     background-color: white;
-    float: left;
+    display: inline-block;
+    box-sizing: border-box;
 }
