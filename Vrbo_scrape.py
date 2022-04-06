@@ -1,15 +1,15 @@
 from calendar import month
+from multiprocessing.connection import wait
 from pprint import pprint
-import time
-import bs4
-import requests 
-import json
+
+import selenium
+from selenium import webdriver
+
 import datetime
 import timeit
 
 
-
-start,end = 0,0
+start, end = 0, 0
 
 params = {
     'location': "",
@@ -20,7 +20,8 @@ params = {
     'pets': "",
 }
 
-def url_gen(location, check_in,check_out, adults, children, pets):
+
+def url_gen(location, check_in, check_out, adults, children, pets):
     check_in = check_in
     check_out = check_out
 
@@ -30,12 +31,13 @@ def url_gen(location, check_in,check_out, adults, children, pets):
         check_in = today.strftime("%Y-%m-%d")
         check_out = tomorow.strftime("%Y-%m-%d")
 
-    #https://www.vrbo.com/search/keywords:dallas-texas-united-states/arrival:2022-04-22/departure:2022-04-30/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount=1&childrenCount=1&petsCount=false
+    # https://www.vrbo.com/search/keywords:dallas-texas-united-states/arrival:2022-04-22/departure:2022-04-30/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount=1&childrenCount=1&petsCount=false
 
     url = f"https://www.vrbo.com/search/keywords:{location}/arrival:{check_in}/departure:{check_out}/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount={adults}&childrenCount={children}&petsCount=false"
     return url
 
     return url
+
 
 def location_gen():
     #order is city, state, country
@@ -46,6 +48,7 @@ def location_gen():
     location = f"{input_city.lower()}--{input_state.lower()}--{input_country.lower()}"
 
     return location
+
 
 def prompt_user():
     check_in = input("Enter the check in date (mm/dd/yyyy): ")
@@ -63,18 +66,14 @@ def prompt_user():
     return params
 
 
+# scraping is impossible with requests library because of the way the website is designed and the way it is coded
+# moving to selenium
 def scrape_vrbo(url):
-    start = timeit.default_timer()
+    driver = webdriver.Chrome(executable_path="/usr/bin/chromedriver")
+    driver.get(url)
 
-    response = requests.get(url)
-    soup = bs4.BeautifulSoup(response.text, 'html.parser')
-
-    # write to file
-    with open('vrbo_scrape.txt', 'w') as f:
-        f.write(str(soup))
-
-    end = timeit.default_timer()
-    print('Time: ', end - start)
+    wait(10)
+    driver.close()
 
 
 def main():
@@ -87,16 +86,16 @@ def main():
     params["children"] = "1"
     params["pets"] = "false"
 
-    url = url_gen(location, params["Check-in"], params["Check-out"], params["adults"], params["children"], params["pets"])
-    print(url)
+    url = url_gen(location, params["Check-in"], params["Check-out"],
+                  params["adults"], params["children"], params["pets"])
 
     scrape_vrbo(url)
 
-    print('Time: ', end - start)  
+    print('Time: ', end - start)
     print(url)
 
     return 0
 
+
 if __name__ == "__main__":
     main()
-
