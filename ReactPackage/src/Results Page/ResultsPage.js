@@ -3,6 +3,7 @@ import './ResultsPage.css'
 import Topbar from './Topbar'
 import Sidebar from './Sidebar'
 import Result from './Result'
+import Navbar from '../components/Navbar'
 
 
 function ResultsPage(){

@@ -10,33 +10,33 @@ function Sidebar(){
         <form>
             <div />
             <label>
-                One Person
                 <input type="checkbox" name="oneperson" />
+                One Person
             </label>
             <div />
             <label>
-                Two Person
                 <input type="checkbox" name="twoperson" />
+                Two Person
             </label>
             <div />
             <label>
-                Three Person
                 <input type="checkbox" name="Threeperson" />
+                Three Person
             </label>
             <div />
             <label>
-                Beachfront
                 <input type="checkbox" name="beachfront" />
+                Beachfront
             </label>
             <div />
             <label>
-                City
                 <input type="checkbox" name="city" />
+                City
             </label>
             <div />
             <label>
-                Price
                 <input type="range" min="$1" max="$100" class="slider" id="pricerange" />
+                Price
             </label>
             <div />
             <label>

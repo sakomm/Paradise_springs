@@ -1,7 +1,6 @@
 import React from 'react'
 import './Topbar.css'
 import Navbar from '../components/Navbar';
-import Searchbar from '../components/Searchbar';
 
 
 
