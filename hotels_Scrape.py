@@ -98,10 +98,11 @@ def scrape_hotels(url):
         "return document.getElementsByClassName(\"listing__link uitk-card-link\")"
     )
 
+    image_redirect = driver.execute_script(
+        "return document.querySelectorAll('img[alt=\"Primary image\"]')"
+    )
 
-
-
-    for title, neighboorhood, review, numRev, price, price_actual, redirect in zip(title_hotel,hotel_neighboorhood,hotel_review, n_reviews, price,price_actual, url_redirect):
+    for title, neighboorhood, review, numRev, price, price_actual, redirect, image in zip(title_hotel,hotel_neighboorhood,hotel_review, n_reviews, price,price_actual, url_redirect, image_redirect):
         tmp = []
 
         tmp.append(title.text)
@@ -110,6 +111,8 @@ def scrape_hotels(url):
         tmp.append(numRev)
         tmp.append(price.text)
         tmp.append(price_actual.text)
+        image_redirect = image.get_attribute("src")
+        tmp.append(image_redirect)
         href_target = redirect.get_attribute("href")
         tmp.append(href_target)
 
