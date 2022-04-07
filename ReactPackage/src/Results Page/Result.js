@@ -4,7 +4,7 @@ import './Result.css'
 function Result(){
     return(
         <div id="result">
-        <h2>Sample Header</h2>
+        <h2>Results</h2>
         </div>
     );
 }
