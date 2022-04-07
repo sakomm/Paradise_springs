@@ -5,11 +5,14 @@
     background-color: white;
     display: inline-block;
     box-sizing: border-box;
+    vertical-align: top;
 }
-.header {
-    padding: 60px;
+h2 {
+    padding: 8px;
     text-align: center;
-    background: #1abc9c;
+    background: #11c5bc;
     color: white;
-    font-size: 30px;
+    font-size: 20px;
+    width: 15%;
+    margin-left: 10px;
 }
