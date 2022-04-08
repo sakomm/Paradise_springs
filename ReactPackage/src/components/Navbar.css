@@ -1,7 +1,6 @@
 .navbar-container{
     height:80px;
     display:flex;
-    justify-content:center;
     font-size: 1.2rem;
     width:100%;
     margin-bottom:0px;
@@ -14,6 +13,7 @@
     color:rgb(14, 24, 163);
     margin-left:20px;
     text-decoration: none;
+    text-align: left;
     
 }
 #menu-icon{

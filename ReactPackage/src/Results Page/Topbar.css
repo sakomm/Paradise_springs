@@ -1,7 +1,67 @@
 #topbar {
     background-image:url("../components/beach1.jpg");
-    border-style: solid;
     height:40vh;
     width:100%;
     background-position:bottom;
 }
+.search{
+    background-color: white;
+    height:6vh;
+    width:55vw;
+    border-style:solid;
+    border-color:rgb(8, 95, 136);
+    border-width:2px;
+    border-radius:8px;
+    border: shadow 2px;
+    
+    
+ }
+
+ .center {
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .place{
+      width:40%;
+      height:95%;
+      border-style:none;
+      border-right-style: solid;
+      margin-left:5px;
+  }
+
+  .in-dates{
+    width:15%;
+    height:95%;
+    border-style:none;
+    border-right-style: solid;
+  }
+  .out-dates{
+    width:15%;
+    height:95%;
+    border-style:none;
+    border-right-style: solid;
+  }
+
+  .guests{
+    width:20%;
+    height:95%;
+    border-style:none;
+    border-right-style: solid;
+  }
+
+  .center-text{
+      text-align:center;
+  }
+
+  .search-icon{
+      
+      display:inline-block;
+      height:95%;
+      width: 5%;
+      text-align:center;
+  }

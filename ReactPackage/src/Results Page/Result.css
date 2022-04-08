@@ -1,8 +1,18 @@
 #result {
     border-style: solid;
     height: 62vh;
-    width: 50%;
+    width: 85%;
     background-color: white;
     display: inline-block;
     box-sizing: border-box;
+    vertical-align: top;
+}
+h2 {
+    padding: 8px;
+    text-align: center;
+    background: #11c5bc;
+    color: white;
+    font-size: 20px;
+    width: 15%;
+    margin-left: 10px;
 }
