@@ -9,6 +9,9 @@ from selenium.webdriver.chromium import options
 
 from multiprocessing import Pool
 
+# https://www.pythonfixing.com/2021/10/fixed-webdriverexception-unknown-error.html
+# pls work i hate this
+
 params = {
     'location': "",
     'Check-in': "",
@@ -38,6 +41,8 @@ def url_gen(offset, location, check_in, check_out, adults, children, pets):
         url = f"https://www.vrbo.com/search/keywords:{location}/page:{i}/arrival:{check_in}/departure:{check_out}/minNightlyPrice/0/minTotalPrice/0?filterByTotalPrice=true&petIncluded=false&ssr=true&adultsCount={adults}&childrenCount={children}&petsCount=false"
 
         all_urls.append(url)
+
+    return all_urls
 
 
 def location_gen():
