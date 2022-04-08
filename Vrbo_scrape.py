@@ -80,12 +80,12 @@ def scrape_vrbo(url):
 
     options = webdriver.ChromeOptions()
     options.add_argument('--log-level=3')
+    options.add_argument('--user-data-dir= /home/saikommuri')
 
     # when on linux use this
     #driver = webdriver.Chrome()
 
-    driver = webdriver.Chrome(
-        executable_path=r'C:\bin\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(options=options)
 
     driver.get(url)
 
