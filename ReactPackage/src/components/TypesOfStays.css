@@ -1,7 +1,7 @@
 #types{
     
     padding-bottom:10vh;
-   
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #outer-div{
@@ -26,13 +26,15 @@
     padding: 0 1vh;
     display:inline-flex;
     box-sizing: border-box;
-    
+    flex-direction: column;
 }
 
 img{
     object-fit:cover;
     width:100%;
     border-radius: 2%;
+    height:80%;
+    
 }
 
 #circle1{
@@ -42,4 +44,11 @@ img{
     
     height:100%;
     margin:0 2vh;
+ }
+
+ .place-label{
+   padding-top:0.5rem;
+   font-family: 'Source Sans Pro', sans-serif;
+   font-weight: 600;
+   font-size:18px;
  }
