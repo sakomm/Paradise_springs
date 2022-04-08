@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 function Topbar(){
     return(
         <div id="topbar">
+            <Navbar />
             <div className = "search center" >
                 
                 <input className='place center-text' type='text' value="Where would you like to go?"></input>
