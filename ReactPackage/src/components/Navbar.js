@@ -13,20 +13,7 @@ function Navbar(){
                     Paradise Springs
                     <i className ="fa-solid fa-umbrella-beach"/>               
                 </Link>
-                <div className= 'burger-menu' onClick= {handleClick}>
-                    <i className= {click ? 'fas fa-times' : 'fas fa-bars'}/>
-                </div>
-                    <ul className={click ? 'nav-menu mobile' : 'nav-menu' }>
-                        {MenuItems.map((item, index)=>{
-                                return(
-                                    <li key = {index}>
-                                        <a className={item.cName} href ={item.url}>
-                                        {item.title}
-                                    </a></li>
-
-                                )
-                         })}
-                    </ul>
+               
                 
             </div>
         </nav>
