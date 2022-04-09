@@ -37,8 +37,7 @@ def scrape_hotels(url):
     driver = webdriver.Chrome(options=options)
     driver.get(url)
 
-    hotels = driver.execute_script(
-        "return document.getElementsByClassName(\"d20f4628d0\")")
+
 
     hotel_names = driver.execute_script(
         "return document.getElementsByClassName(\"fcab3ed991 a23c043802\")")
@@ -52,7 +51,7 @@ def scrape_hotels(url):
     
     hotel_location = driver.execute_script("return document.getElementsByClassName(\"fc63351294 a168c6f285 e0e11a8307 a25b1d9e47\")") 
 
-    hotel_image = driver.execute_script("retrun document.getElementsByClassName(\"b8b0793b0e\")")
+    hotel_image = driver.execute_script("return document.getElementsByClassName(\"b8b0793b0e\")")
 
     hotel_distance_actual = []
     
@@ -75,6 +74,10 @@ def scrape_hotels(url):
     
     return rental_actual
 
+def json_dump(dump):
+    with open("JSON_Outputs\dump.json", "w") as f:
+        json.dump(dump, f)
+
 def main():
     location = gen_location("Las Vegas", "Nevada", "United States of America")
     check_in = "2022/4/13"
@@ -85,7 +88,8 @@ def main():
 
     url = generate_url(location, check_in, check_out, adults, children, rooms)
     print(url)
-    scrape_hotels(url)
+    dump = scrape_hotels(url)
+    json_dump(dump)
 
 
 if __name__ == "__main__":
