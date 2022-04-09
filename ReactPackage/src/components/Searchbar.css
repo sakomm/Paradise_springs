@@ -10,6 +10,7 @@
      padding-top: 2%;
      padding-left: 2%;;
  }
+ 
 
  .search{
     background-color: white;
@@ -20,6 +21,10 @@
     border-width:2px;
     border-radius:8px;
     border: shadow 2px;
+    box-sizing: border-box;
+    margin:0;
+    display:inline-flex
+    
     
     
  }
@@ -38,7 +43,9 @@
       height:95%;
       border-style:none;
       border-right-style: solid;
-      margin-left:5px;
+      border-radius:8px 0px 0px 8px;
+      outline:none;
+      
   }
 
   .in-dates{
@@ -46,12 +53,14 @@
     height:95%;
     border-style:none;
     border-right-style: solid;
+    outline:none;
   }
   .out-dates{
     width:15%;
     height:95%;
     border-style:none;
     border-right-style: solid;
+    outline:none;
   }
 
   .guests{
@@ -59,6 +68,7 @@
     height:95%;
     border-style:none;
     border-right-style: solid;
+    outline:none;
   }
 
   .center-text{
@@ -66,11 +76,18 @@
   }
 
   .search-icon{
-      
-      display:inline-block;
+      display:inline-flex;
       height:95%;
-      width: 5%;
-      text-align:center;
+      width: 10%;
+      align-items: center;
+      justify-content: center;
+      box-sizing:border-box; 
+  }
+
+  #search-button{
+    background-color: transparent;
+    border-style:none;
+    width:100%
   }
 
   

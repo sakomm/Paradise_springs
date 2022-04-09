@@ -30,8 +30,10 @@ p{
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
     font-size:15px;
+    font-weight: 500;
 }
 #property{
     padding-top:1rem;
+    font-weight: 600;
 }
 
