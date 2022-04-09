@@ -117,7 +117,7 @@ def make_json(full_rentals, location):
     make a json file of the scraped data
     """
     # make a json file of the scraped data each property should have its own section all index 0 are tougether
-    with open(f"/home/saikommuri/Documents/CoDiNG_GeNiuS/Paradise_springs/JSON_Outputs/{location}_airbnb_scrape.json", "a") as f:
+    with open(f"JSON_Outputs\{location}_airbnb_scrape.json", "a") as f:
 
         for rentals in full_rentals:
             json.dump({"property": rentals}, f)
