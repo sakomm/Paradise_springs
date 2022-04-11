@@ -4,4 +4,14 @@
     width: 15%;
     display: inline-block;
     box-sizing: border-box;
+    vertical-align: top;
+}
+h1{
+    padding: 8px;
+    text-align: center;
+    background: #11c5bc;
+    color: white;
+    font-size: 20px;
+    width: 84%;
+    margin-left: 10px;
 }
