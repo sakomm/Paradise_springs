@@ -61,9 +61,9 @@ function Searchbar(){
                             <button id="hidden-but" value={numberOfGuests}></button >
                             <p id="guest-font">Guests</p>
                             <div id="button-cont">
-                               <div id="but-one"> <div className="g-button" onClick ={guestInc}>+</div></div>
+                               <div id="but-one"> <div className="g-button" onClick ={guestDec}>-</div></div>
                                <p id="guest-text">0</p>
-                               <div id="but-two"><div className="g-button" onClick={guestDec}>-</div></div>
+                               <div id="but-two"><div className="g-button" onClick={guestInc}>+</div></div>
                             </div>
                         </span>
                      </div>
