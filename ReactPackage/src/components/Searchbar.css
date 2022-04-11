@@ -4,6 +4,17 @@
      height:60vh;
      width:100%;
      background-position:bottom;
+  
+ }
+
+ #search-div{
+    
+    width:100%;
+    background-color:transparent;
+    height:20vh;
+    position: absolute;
+    top:30vh;
+    z-index:3;
  }
 
  h1{
@@ -23,7 +34,7 @@
     border: shadow 2px;
     box-sizing: border-box;
     margin:0;
-    display:inline-flex
+    display:inline-flex;
     
     
     
@@ -40,35 +51,48 @@
 
   .place{
       width:40%;
-      height:95%;
+      height:100%;
       border-style:none;
       border-right-style: solid;
+      border-width:2px;
       border-radius:8px 0px 0px 8px;
       outline:none;
+      margin:0;
+      display: inline-block;
+      padding:0;
+      flex-direction: column;
+      align-items:center;
+      justify-content: center;
+      background-color: white;
+      border-color:gray;
       
   }
 
   .in-dates{
     width:15%;
-    height:95%;
+    height:100%;
     border-style:none;
     border-right-style: solid;
     outline:none;
   }
   .out-dates{
     width:15%;
-    height:95%;
+    height:100%;
     border-style:none;
     border-right-style: solid;
     outline:none;
   }
 
-  .guests{
+  #guests{
     width:20%;
-    height:95%;
+    height:100%;
     border-style:none;
     border-right-style: solid;
     outline:none;
+    background-color: white;
+    border-color:gray;
+    border-right-width: 2px;
+   
   }
 
   .center-text{
@@ -77,17 +101,161 @@
 
   .search-icon{
       display:inline-flex;
-      height:95%;
+      height:100%;
       width: 10%;
       align-items: center;
-      justify-content: center;
+      justify-content:baseline;
       box-sizing:border-box; 
   }
 
   #search-button{
     background-color: transparent;
     border-style:none;
-    width:100%
+    width:100%;
+    height:100%;
+  }
+
+  .locations{
+    background-color: white;
+    list-style: none;
+    text-decoration: none;
+    color:black;
+    outline:none;
+    margin:0;
+    padding:10px 0;
+    padding-left:0.5rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:rgb(8, 95, 136);
+    font-weight: 600;
+    
+  }
+
+  .locations:hover{
+    background-color: rgb(211, 249, 250) ;
+  }
+
+ 
+
+  .type-results{
+    display: block;
+    
+    margin:0;
+    padding:0;
+    margin-top:2px;
+    background-color: white;
+    position:relative;
+    z-index:2 !important;
+    border-style:solid;
+    border-width:2px;
+    border-color:lightblue;
+    border-top:none;
+    box-shadow: 7px 5px 5px lightblue;
+    position:relative;
+    
+  }
+
+  
+
+  .show {
+    visibility:visible !important;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 0.2s;
+    width: 100%;
+    height:20vh;
+    background-color: white;
+    color: blue;
+    padding: 8px 0px;
+    display:block;
+    position:relative;
+    top:100%;
+    margin-top:5px;
+    border-style:solid;
+    border-width:2px;
+    border-color:lightblue;
+    border-top:none;
+    box-shadow: 7px 5px 5px lightblue;
+    
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }
+
+  .popup {
+    display:none
+   
+  }
+
+  .g-button{
+    display:flex;
+    border-radius: 50%;
+    height:40px;
+    width:40px;
+    text-align:center;
+    font-weight: 800;
+    font-size:20px;
+    border-style:solid;
+    border-width: 2px;
+    align-items: center;
+    justify-content:center;
+    border-color:rgb(8, 95, 136);
+    cursor:pointer;
+  }
+
+  #guest-text{
+    text-align:center;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:rgb(8, 95, 136);
+    font-weight: 600;
+    font-size: 18px;
+    
+  
+  }
+
+  #guest-font{
+    text-align:center;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:rgb(8, 95, 136);
+    font-weight: 600;
+    font-size: 18px;
+    padding-top:3vh;
+    padding-bottom:4vh;
+  }
+
+  #button-cont{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #but-one{
+    height:100%;
+    display:inline-flex;
+    width:50%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  #but-two{
+    height:100%;
+    display:inline-flex;
+    width:50%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #hidden-but{
+    visibility: hidden;
   }
 
   

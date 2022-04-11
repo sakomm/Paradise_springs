@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Places from './components/Places'
 import Footer from './components/Footer'
 import ResultsPage from './Results Page/ResultsPage'
+import MainPicture from './components/MainPicture';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path ="/" exact></Route>
       </Routes>
     </Router>
+     <MainPicture />
      <Searchbar />
      <Places />
      <Footer />
