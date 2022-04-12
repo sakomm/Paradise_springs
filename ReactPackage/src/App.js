@@ -11,15 +11,7 @@ import ResultsPage from './Results Page/ResultsPage'
 function App() {
   return (
     <div className="App">
-      <Router>
-      <Navbar />
-      <Routes>
-        <Route path ="/" exact></Route>
-      </Routes>
-    </Router>
-     <Searchbar />
-     <Places />
-     <Footer />
+      <ResultsPage />
      
      
     </div>

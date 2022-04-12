@@ -6,7 +6,7 @@ import './Sidebar.css'
 function Sidebar(){
     return(
         <div id="sidebar">
-        <h1>Filters </h1>
+        <h1 className='Sideheader'>Filters </h1>
         <form>
             <div />
             <label>
