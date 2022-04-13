@@ -9,7 +9,7 @@ function Navbar(){
     return(
         <nav className='navbar'>
             <div className='navbar-container'>
-                <Link to="/" className="logo">
+                <Link to="/sakomm/Paradise_springs" className="logo">
                     Paradise Springs
                     <i className ="fa-solid fa-umbrella-beach"/>               
                 </Link>
