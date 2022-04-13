@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Searchbar.css'
+import {Link} from 'react-router-dom'
 
 import { usaCities } from './usaCities';
 
@@ -34,7 +35,7 @@ function Searchbar(){
    
     return(
         <div id = "search-div" >
-        <form onSubmit={""}>
+        <form method ="post" action= "createQuery.php">
             <div className = "search center" >
                
                 <Typeahead placeholder ={'Where do you want to go?'} inputProps={{className: "place", style: {
@@ -67,11 +68,15 @@ function Searchbar(){
                             </div>
                         </span>
                      </div>
+                    
                      <div className="search-icon" onClick={handleClick2}>
-                        <button id="search-button">
+                     <Link id="result-link" to="/ResultsPage">
+                        <button type="submit" name="Submit" id="search-button">
                             <i  class="fas fa-search"></i>
                         </button>
+                        </Link>
                     </div>
+                    
                     
             
             </div>

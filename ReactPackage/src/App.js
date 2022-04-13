@@ -17,7 +17,7 @@ function App() {
   
     
      <Link to="/sakomm/Paradise_springs"></Link>
-     <Link to="/ResultsPage"></Link>
+    
     
     
      
