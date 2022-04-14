@@ -13,6 +13,8 @@ h2 {
     background: #11c5bc;
     color: white;
     font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
     width: 15%;
     margin-left: 10px;
 }
