@@ -7,12 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 function Topbar(){
     return(
         <div id="topbar">
-            <Router>
             <Navbar />
-            <Routes>
-            <Route path ="/" exact></Route>
-            </Routes>
-            </Router>
             <div className = "search center" >
                 
                 <input className='place center-text' type='text' value="Where would you like to go?"></input>
