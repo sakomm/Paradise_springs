@@ -1,5 +1,6 @@
 import React from 'react'
 import './Result.css'
+import Rental2 from './Rental2'
 
 function Result(){
     return(

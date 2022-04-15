@@ -1,4 +1,5 @@
 import React from 'react'
+import Rental2 from './Rental2';
 import './Sidebar.css'
 
 

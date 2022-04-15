@@ -1,0 +1,38 @@
+#post{
+    background-color:transparent;
+    height:20vw;
+    width: 20%;
+    border-radius: 2%;
+    padding: 0 1vh;
+    display:inline-flex;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+   flex-direction: column;
+   
+}
+
+.rental-pic{
+   
+    object-fit:cover;
+    display:fle;
+    width:100%;
+    height:70%;
+    border-radius: 2%;
+}
+
+p{
+    align-self: flex-start;
+    white-space: pre-wrap;
+    padding-top: 0.2rem;
+    margin:0;
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:15px;
+    font-weight: 500;
+}
+#property{
+    padding-top:1rem;
+    font-weight: 600;
+}
