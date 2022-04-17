@@ -1,8 +1,12 @@
+from ctypes import Union
 import sys
 import requests
 import bs4
 import json
 import datetime as dt
+
+from pymongo import MongoClient
+import certifi
 
 params = {
     'location': "",
@@ -34,13 +38,14 @@ def construct_url(location, Checkin, Checkout, adults, children, infants):
     return url
 
 
-def construct_location():
+def construct_location(loc):
     #order is city, state, country
-    input_city = input("Enter the city: ")
-    input_state = input("Enter the state: ")
-    input_country = input("Enter the country: ")
 
-    location = f"{input_city.lower()}--{input_state.lower()}--{input_country.lower()}"
+    loc = loc.split(",")
+    # remove all the spaces
+    loc = [x.strip() for x in loc]
+
+    location = f"{loc[0]}--{loc[1]}--USA"
 
     return location
 
@@ -127,40 +132,70 @@ def make_json(full_rentals, location):
     f.close()
 
 
+def database_insert(rental_actual, city):
+    # https://www.mongodb.com/blog/post/getting-started-with-python-and-mongodb
+    client = MongoClient(
+        "mongodb+srv://skom:access123@cluster0.5vezi.mongodb.net/test", tlsCAFile=certifi.where())
+    # make a database of rentals
+    db = client.rentals_test_drop
+
+    # tmp = [header, name, price, ratings,
+    #        amen_r1, amen_r2, room_link, image_link]
+
+    for data in rental_actual:
+        rental_info = {}
+        rental_info["key"] = city
+
+        rental_info["rental_name"] = data[1]
+        rental_info["rental_price"] = data[2]
+        rental_info["rental_rating"] = data[3]
+        amenities = []
+        for amen in data[4]:
+            amenities.append(amen)
+        for amen in data[5]:
+            amenities.append(amen)
+        rental_info["rental_amenities"] = amenities
+        rental_info["room_link"] = data[6]
+        rental_info["rental_image"] = data[7]
+
+        db.rentals.insert_one(rental_info)
+
+
 def main():
 
-    # location = construct_location()
-    # Checkin = input("Enter the checkin date or press enter: ")
-    # Checkout = input("Enter the checkout date or press enter: ")
-    # adults = input("Enter the number of adults: ")
-    # children = input("Enter the number of children: ")
-    # infants = input("Enter the number of infants: ")
+    city_state = ['Knoxville, Tennessee', 'Durham, North Carolina', 'High Point, North Carolina', 'Henderson, Nevada',
+                  'Broken Arrow, Oklahoma', 'Greensboro, North Carolina', 'Winston Salem, North Carolina', 'Tulsa, Oklahoma', 'Nashville, Tennessee']
 
-    location = sys.argv[1]
-    # Checkin = sys.argv[2]
-    # Checkout = sys.argv[3]
-    adults = sys.argv[2]
-    children = sys.argv[3]
-    infants = sys.argv[4]
+    game = ['Las Vegas, Nevada', 'North Las Vegas, Nevada', 'Visalia, California', 'Clarksville, Tennessee', 'Chesapeake, Virginia', 'Salinas, California', 'Fresno, California', 'Virginia Beach, Virginia', 'Clovis, California', 'Norfolk, Virginia', 'Hampton, Virginia', 'Newport News, Virginia', 'Springfield, Missouri', 'Roanoke, Virginia', 'San Jose, California', 'Santa Clara, California', 'Sunnyvale, California', 'Fremont, California', 'Richmond, Virginia', 'San Mateo, California', 'Hayward, California', 'Modesto, California', 'Wichita, Kansas', 'Daly City, California', 'San Francisco, California', 'Oakland, California', 'Berkeley, California', 'Richmond, California', 'Stockton, California', 'Antioch, California', 'Concord, California', 'Evansville, Indiana', 'Lexington, Kentucky', 'Vallejo, California', 'Louisville, Kentucky', 'Fairfield, California', 'Pueblo, Colorado', 'Vacaville, California', 'Elk Grove, California', 'Santa Rosa, California', 'Sacramento, California', 'St. Louis, Missouri', 'Roseville, California', 'Alexandria, Virginia', 'Colorado Springs, Colorado', 'Overland Park, Kansas', 'Olathe, Kansas', 'Washington, District of Columbia', "Lee's Summit, Missouri", 'Columbia, Missouri', 'Topeka, Kansas', 'Independence, Missouri', 'Kansas City, Missouri', 'Kansas City, Kansas', 'Cincinnati, Ohio', 'Baltimore, Maryland', 'Reno, Nevada', 'Sparks, Nevada', 'Centennial, Colorado', 'Aurora, Colorado', 'Lakewood, Colorado', 'Chico, California', 'Denver, Colorado', 'Dayton, Ohio', 'Indianapolis, Indiana', 'Springfield, Illinois', 'Arvada, Colorado', 'Westminster, Colorado', 'Thornton, Colorado', 'Columbus, Ohio', 'Philadelphia, Pennsylvania', 'Boulder, Colorado', 'Lakewood, New Jersey', 'Provo, Utah', 'Greeley, Colorado', 'Pittsburgh, Pennsylvania', 'Edison, New Jersey', 'Fort Collins, Colorado', 'Woodbridge, New Jersey',
+            'Allentown, Pennsylvania', 'West Jordan, Utah', 'Elizabeth, New Jersey', 'West Valley City, Utah', 'Jersey City, New Jersey', 'Newark, New Jersey', 'Peoria, Illinois', 'Salt Lake City, Utah', 'Lincoln, Nebraska', 'Paterson, New Jersey', 'Yonkers, New York', 'Stamford, Connecticut', 'Akron, Ohio', 'Fort Wayne, Indiana', 'Bridgeport, Connecticut', 'Omaha, Nebraska', 'New Haven, Connecticut', 'Cleveland, Ohio', 'Joliet, Illinois', 'Waterbury, Connecticut', 'Davenport, Iowa', 'Des Moines, Iowa', 'New Bedford, Massachusetts', 'Toledo, Ohio', 'South Bend, Indiana', 'Naperville, Illinois', 'Hartford, Connecticut', 'Aurora, Illinois', 'Providence, Rhode Island', 'Chicago, Illinois', 'Cedar Rapids, Iowa', 'Elgin, Illinois', 'Brockton, Massachusetts', 'Springfield, Massachusetts', 'Quincy, Massachusetts', 'Rockford, Illinois', 'Worcester, Massachusetts', 'Ann Arbor, Michigan', 'Dearborn, Michigan', 'Boston, Massachusetts', 'Cambridge, Massachusetts', 'Detroit, Michigan', 'Lynn, Massachusetts', 'Warren, Michigan', 'Clinton, Michigan', 'Sterling Heights, Michigan', 'Lowell, Massachusetts', 'Lansing, Michigan', 'Buffalo, New York', 'Grand Rapids, Michigan', 'Manchester, New Hampshire', 'Syracuse, New York', 'Milwaukee, Wisconsin', 'Madison, Wisconsin', 'Rochester, New York', 'Sioux Falls, South Dakota', 'Nampa, Idaho', 'Boise, Idaho', 'Meridian, Idaho', 'Rochester, Minnesota', 'Eugene, Oregon', 'Green Bay, Wisconsin', 'Salem, Oregon', 'Saint Paul, Minnesota', 'Minneapolis, Minnesota', 'Gresham, Oregon', 'Hillsboro, Oregon', 'Portland, Oregon', 'Vancouver, Washington', 'Billings, Montana', 'Fargo, North Dakota', 'Tacoma, Washington', 'Federal Way, Washington', 'Kent, Washington', 'Renton, Washington', 'Bellevue, Washington', 'Seattle, Washington', 'Spokane Valley, Washington', 'Spokane, Washington', 'Everett, Washington', 'Anchorage, Alaska']
 
-    # make checkin current month
-    Checkin = dt.datetime.now().strftime("%B")
-    # make checkout next month
-    month_plus = dt.datetime.now() + dt.timedelta(days=30)
-    Checkout = month_plus.strftime("%B")
+    for city in city_state:
+        location = construct_location(city)
+        # Checkin = sys.argv[2]
+        # Checkout = sys.argv[3]
+        adults = "1"
+        children = "1"
+        infants = "0"
 
-    # print(f"Checkin: {Checkin} && Checkout: {Checkout}")
+        # make checkin current month
+        Checkin = dt.datetime.now().strftime("%B")
+        # make checkout next month
+        month_plus = dt.datetime.now() + dt.timedelta(days=4)
+        Checkout = month_plus.strftime("%B")
 
-    url = construct_url(location, Checkin, Checkout, adults, children, infants)
+        # print(f"Checkin: {Checkin} && Checkout: {Checkout}")
 
-    for i in range(15):
-        offset = 20 * i
-        url_offset = f"{url}&offset={offset}"
+        url = construct_url(location, Checkin, Checkout,
+                            adults, children, infants)
 
-        full_rentals = scrape_page(url_offset)
-        make_json(full_rentals, location)
+        for i in range(15):
+            offset = 20 * i
+            url_offset = f"{url}&offset={offset}"
 
-    print("complete")
+            full_rentals = scrape_page(url_offset)
+            database_insert(full_rentals, city)
+
+    print("done")
 
 
 if __name__ == "__main__":
