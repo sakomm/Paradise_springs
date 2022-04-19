@@ -9,7 +9,7 @@
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-   flex-direction: column;
+    flex-direction: column;
    
 }
 
@@ -17,9 +17,12 @@
    
     object-fit:cover;
     display:fle;
-    width:100%;
-    height:70%;
+    width:20vw;
+    height:20%;
     border-radius: 2%;
+    margin-top: 1vh;
+    margin-left: 1vh;
+    float: left;
 }
 
 p{
@@ -31,6 +34,8 @@ p{
     font-family: 'Source Sans Pro', sans-serif;
     font-size:15px;
     font-weight: 500;
+    margin-top: 1vh;
+    margin-left: 1vh;
 }
 #property{
     padding-top:1rem;
