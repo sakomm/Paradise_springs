@@ -22,10 +22,10 @@
     border-radius: 2%;
     margin-top: 1vh;
     margin-left: 1vh;
-    float: left;
+    display: inline-block;
 }
 
-p{
+.postText{
     align-self: flex-start;
     white-space: pre-wrap;
     padding-top: 0.2rem;
@@ -36,6 +36,15 @@ p{
     font-weight: 500;
     margin-top: 1vh;
     margin-left: 1vh;
+}
+
+#textDiv {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
 }
 #property{
     padding-top:1rem;
