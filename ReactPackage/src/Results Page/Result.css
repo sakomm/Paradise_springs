@@ -3,6 +3,7 @@
     height: 62vh;
     width: 85%;
     background-color: white;
+    position: absolute;
     display: inline-block;
     box-sizing: border-box;
     vertical-align: top;

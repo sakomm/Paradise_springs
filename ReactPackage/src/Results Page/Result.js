@@ -6,6 +6,7 @@ function Result(){
     return(
         <div id="result">
         <h2>Results</h2>
+        <Rental2 description={"Bruh Boat"} price={"35"} photo={"../components/boat.jpg"}/>
         </div>
     );
 }
