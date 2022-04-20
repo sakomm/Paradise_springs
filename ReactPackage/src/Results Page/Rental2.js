@@ -6,7 +6,9 @@ function Rental2({description, price, photo}){
     return(
         <div id = "Rental2">
             <a></a>
-            <img class="rental-pic" src= {photo}></img>
+            <div id="imgDiv" >
+            <img className="rentalPostPic" src= {photo}></img>
+            </div>
             <div id = "textDiv" >
             <p id="property" className="postText">{description}</p>
             <p className="postText">Safety Rating: TBA</p>

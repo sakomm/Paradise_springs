@@ -4,7 +4,7 @@
     width: 20%;
     border-radius: 2%;
     padding: 0 1vh;
-    display:inline-flex;
+    display:inline-block;
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
@@ -13,8 +13,7 @@
    
 }
 
-.rental-pic{
-   
+.rentalPostPic{
     object-fit:cover;
     display:fle;
     width:20vw;
@@ -22,30 +21,30 @@
     border-radius: 2%;
     margin-top: 1vh;
     margin-left: 1vh;
-    display: inline-block;
 }
 
 .postText{
     align-self: flex-start;
     white-space: pre-wrap;
-    padding-top: 0.2rem;
     margin:0;
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
     font-size:15px;
     font-weight: 500;
-    margin-top: 1vh;
-    margin-left: 1vh;
+}
+#imgDiv {
+    display: inline-block;
+    width: 26%;
+    height: 100%;
+    margin: 0;
+    
+}
+#textDiv {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
 }
 
-#textDiv {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 100%;
-}
 #property{
     padding-top:1rem;
     font-weight: 600;
