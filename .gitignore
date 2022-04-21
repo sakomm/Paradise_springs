@@ -5,3 +5,5 @@ geckodriver.log
 /home
 /Results Page
  /home/saikommuri/**
+ /.vscode
+ /JSON_Outputs
