@@ -1,11 +1,12 @@
 .navbar-container{
     height:80px;
-    display:flex;
+    display:flexbox;
     font-size: 1.2rem;
     width:100%;
     margin-bottom:0px;
     align-items:center;
     background-color: white;
+    justify-content: center;
 }
 
 .logo{
@@ -14,6 +15,9 @@
     margin-left:20px;
     text-decoration: none;
     text-align: left;
+    display:flex;
+    align-items: center;
+    height:100%;
     
 }
 #menu-icon{

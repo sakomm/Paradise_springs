@@ -51,4 +51,10 @@ img{
    font-family: 'Source Sans Pro', sans-serif;
    font-weight: 600;
    font-size:18px;
+   color:black;
+   text-decoration:dashed;
+ }
+
+ #result-link1{
+     text-decoration: none;
  }

@@ -115,22 +115,36 @@
     height:100%;
   }
 
-  .locations{
+  .locations1{
     background-color: white;
     list-style: none;
     text-decoration: none;
     color:black;
     outline:none;
     margin:0;
-    padding:10px 0;
-    padding-left:0.5rem;
+    padding: 10px 0;
+    padding-left:8px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color:rgb(8, 95, 136);
+    font-weight: 600;
+    display:block;
+    width:100%;
+  }
+
+  .locations2{
+    background-color: white;
+    list-style: none;
+    text-decoration: none;
+    color:black;
+    outline:none;
+    margin:0;
     font-family: 'Source Sans Pro', sans-serif;
     color:rgb(8, 95, 136);
     font-weight: 600;
     
   }
 
-  .locations:hover{
+  .locations1:hover{
     background-color: rgb(211, 249, 250) ;
   }
 
