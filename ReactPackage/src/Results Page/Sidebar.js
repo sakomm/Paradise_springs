@@ -1,8 +1,5 @@
 import React from 'react'
-import Rental2 from './Rental2';
 import './Sidebar.css'
-
-
 
 function Sidebar(){
     return(
@@ -36,7 +33,7 @@ function Sidebar(){
             </label>
             <div />
             <label>
-                <input type="range" min="1" max="100" class="slider" id="pricerange" />
+                <input type="range" min="1" max="100"  class="slider" defaultValue="20" id="pricerange" />
                 Price
             </label>
             <div />

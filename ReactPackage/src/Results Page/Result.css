@@ -1,21 +1,20 @@
 #result {
-    border-style: solid;
-    height: 62vh;
+    height: 100%;
     width: 85%;
     background-color: white;
     position: absolute;
     display: inline-block;
     box-sizing: border-box;
     vertical-align: top;
+    border-radius: 10px;
+    border-width: 3px;
 }
 h2 {
     padding: 8px;
-    text-align: center;
-    background: #11c5bc;
-    color: white;
+    text-align: left;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     width: 15%;
-    margin-left: 10px;
 }

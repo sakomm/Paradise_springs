@@ -1,6 +1,5 @@
 import React from "react";
 import './Rental2.css'
-import Image from "../components/boat.jpg"
 
 function Rental2({description, price, photo}){
     return(

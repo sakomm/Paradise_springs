@@ -1,7 +1,7 @@
 #back{
     
     background-image:url("../components/beach1.jpg");
-    height:40vh;
+    height:30vh;
     width:100%;
     background-position:bottom;
  
@@ -13,7 +13,7 @@
    background-color:transparent;
    height:5vh;
    position: absolute;
-   top:25vh;
+   top:20vh;
    z-index:3;
 }
 
