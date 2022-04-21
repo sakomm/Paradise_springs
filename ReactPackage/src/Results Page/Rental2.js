@@ -12,6 +12,7 @@ function Rental2({description, price, photo}){
             <p id="property" className="postText">{description}</p>
             <p className="postText">Safety Rating: TBA</p>
             <p id="price" className="postText">${price}/night</p>
+
             </div>
             
         </div>

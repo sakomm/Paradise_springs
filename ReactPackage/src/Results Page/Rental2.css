@@ -1,7 +1,7 @@
 #post{
     background-color:transparent;
-    height:20vw;
-    width: 20%;
+    height:25vw;
+    width: 25%;
     border-radius: 2%;
     padding: 0 1vh;
     display:inline-block;
@@ -16,8 +16,8 @@
 .rentalPostPic{
     object-fit:cover;
     display:fle;
-    width:20vw;
-    height:20%;
+    width:25vw;
+    height:25%;
     border-radius: 2%;
     margin-top: 1vh;
     margin-left: 1vh;
@@ -29,12 +29,12 @@
     margin:0;
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
-    font-size:15px;
+    font-size:20px;
     font-weight: 500;
 }
 #imgDiv {
     display: inline-block;
-    width: 26%;
+    width: 32%;
     height: 100%;
     margin: 0;
     
@@ -43,6 +43,7 @@
     display: inline-block;
     height: 100%;
     width: 50%;
+    vertical-align: top;
 }
 
 #property{
