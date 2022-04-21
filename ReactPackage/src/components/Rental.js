@@ -4,15 +4,21 @@ import './Rental.css'
 
 
 
-function Rental({description, price, photo}){
+
+function Rental({ post}){
+
+   
     return(
         <div id = "post">
-            <a></a>
-            <img class="rental-pic" src= {photo}></img>  
-            <p id="property" >Entire residential home in Charlottesville</p>
-            <p>Safety Rating:</p>
-            <p id="price">${price}/night</p>
             
+            <a id ="house-url" href = {post.room_link}>
+            <img id="rental-pic" src= {post.rental_image}></img>
+         <div id="text-cont">
+            <p id="property" >{post.rental_name}</p>
+            <p>Safety Rating:</p>
+            <p id="price">${post.rental_price}/night</p>
+            </div>  
+            </a>
         </div>
     );
 }

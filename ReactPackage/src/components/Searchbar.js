@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import './Searchbar.css'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
+
 
 import { usaCities } from './usaCities';
+
+
 
 var numberOfGuests =0;
 function Searchbar(){
     
+    
+
+
+
     const guestInc = () =>{
         numberOfGuests++;
         document.getElementById('guest-text').innerHTML = numberOfGuests;
@@ -19,7 +28,7 @@ function Searchbar(){
         document.getElementById('hidden-but').value =numberOfGuests;
     }
 
-    //const [click, setClick]=useState(false);
+   
     const handleClick = () => {
         document.getElementsByClassName('popup')[0].className = "show";
     }
@@ -31,11 +40,28 @@ function Searchbar(){
     const handleEntailmentRequest= (e)=> {
         e.preventDefault();
     }
+
+    const onSubmit = () =>{
+        var location = document.getElementsByClassName("place")[0].getElementsByTagName('input')[0].value;
+        var checkin = document.getElementById("c1").value;
+        var checkout = document.getElementById("c2").value;
+        var guests = document.getElementById("hidden-but").value;
+        console.log(location);
+
+        axios.get('/ParadiseSprings').then((response) => {
+            const data = response.data;
+            console.log('Data has been received');
+        })
+        .catch(() => {
+            alert('Error');
+        });
+    }
+
     var Typeahead = require('react-typeahead').Typeahead;
    
     return(
         <div id = "search-div" >
-        <form method ="post" action= "createQuery.php">
+        <form>
             <div className = "search center" >
                
                 <Typeahead placeholder ={'Where do you want to go?'} inputProps={{className: "place", style: {
@@ -51,12 +77,12 @@ function Searchbar(){
                     'border-box': 'box-sizing',
                     'background-color' :'transparent',
                 }}} className='place'
-                customClasses={{listItem:'locations',
-                listAnchor: 'locations',
+                customClasses={{listItem:'locations2',
+                listAnchor: 'locations1',
                 results: 'type-results'}} options = {usaCities} maxVisible = {10} />
                      
-                     <input type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
-                     <input type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
+                     <input id ="c1" type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
+                     <input id ="c2" type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
                      <div id ="guests" onClick={handleClick} >
                         <span className="popup" >
                             <button id="hidden-but" value={numberOfGuests}></button >
@@ -71,7 +97,7 @@ function Searchbar(){
                     
                      <div className="search-icon" onClick={handleClick2}>
                      <Link id="result-link" to="/ResultsPage">
-                        <button type="submit" name="Submit" id="search-button">
+                        <button type="submit" name="Submit" id="search-button" onClick={onSubmit}>
                             <i  class="fas fa-search"></i>
                         </button>
                         </Link>
