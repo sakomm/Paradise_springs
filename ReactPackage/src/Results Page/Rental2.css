@@ -1,0 +1,52 @@
+#post{
+    background-color:transparent;
+    height:25vw;
+    width: 25%;
+    border-radius: 2%;
+    padding: 0 1vh;
+    display:inline-block;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex-direction: column;
+   
+}
+
+.rentalPostPic{
+    object-fit:cover;
+    display:fle;
+    width:25vw;
+    height:25%;
+    border-radius: 2%;
+    margin-top: 1vh;
+    margin-left: 1vh;
+}
+
+.postText{
+    align-self: flex-start;
+    white-space: pre-wrap;
+    margin:0;
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:20px;
+    font-weight: 500;
+}
+#imgDiv {
+    display: inline-block;
+    width: 32%;
+    height: 100%;
+    margin: 0;
+    
+}
+#textDiv {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    vertical-align: top;
+}
+
+#property{
+    padding-top:1rem;
+    font-weight: 600;
+}
