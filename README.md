@@ -4,7 +4,7 @@
     <img width="100%" src="https://user-images.githubusercontent.com/55466413/164766230-992fefdd-cf00-4598-ae9e-8c56ffab7af6.png"> 
 </p>
 
-Are you tired of searching multiple sites and having hundreds of tabs open to find one vacation rental? Our website searches for you, compiling all the available rooms or houses for you to easily browse. We have tools for you to measure the safety of areas so you can feel secure in your choice, rank based on distance, number of rooms, closest attractions, and others. Best of all it's free to use and has no additional costs.
+Are you tired of searching multiple sites and having hundreds of tabs open to find one vacation rental? Our website searches for you, compiling all the available rooms or houses for you to easily browse. We have tools for you to help measure the safety of areas so you can feel secure in your choice, rank based on distance, number of rooms, and others. Best of all it's free to use and has no additional costs.
 
 ---------------------------------------------------------
 
