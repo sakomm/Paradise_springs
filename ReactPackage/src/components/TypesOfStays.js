@@ -7,28 +7,56 @@ import {Link} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import * as api from '../api'
 
-var filter;
+
 function TypesOfStays(){
-    const [filters, setFilters] = useState({location: [], checkin: '', checkout: '', guests: ''});
+    
     
     const handleClick = () =>{
-        filter = "beach";
-        setFilters({...filters, location:['Florida', 'Hawaii', 'California']})
-        var listings = api.fetchResults(filters)
+       
+        api.fetchPosts({
+            params:{
+                state: ["Florida", "California", "Hawaii"],
+                city: ""
+            }
+        })
             .then(response => console.log(response.data));
        
     }
     const handleClick1 = () =>{
-        filter = "city";
+        api.fetchPosts({
+            params:{
+                state: "",
+                city: ["Nashville", "Atlanta", "Chicago"]
+            }
+        })
+            .then(response => console.log(response.data));
     }
     const handleClick2 = () =>{
-        filter = "mountain";
+        api.fetchPosts({
+            params:{
+                state: ["Colorado", "Montana", "Wyoming"],
+                city: ""
+            }
+        })
+            .then(response => console.log(response.data));
     }
     const handleClick3 = () =>{
-        filter = "water";
+        api.fetchPosts({
+            params:{
+                state: ["Hawaii", "", ""],
+                city: ""
+            }
+        })
+            .then(response => console.log(response.data));
     }
     const handleClick4 = () =>{
-        filter = "country";
+        api.fetchPosts({
+            params:{
+                state: ["West Virginia", "Louisiana", "North Carolina"],
+                city: ""
+            }
+        })
+            .then(response => console.log(response.data));
       
     }
     return(

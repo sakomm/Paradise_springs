@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
 app.use('/posts', postRoutes)
-app.use('/ResultsPage', postRoutes)
+
 const CONNECTION_URL = 'mongodb+srv://grace:grace@cluster0.5vezi.mongodb.net/rentals_test_drop?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
 

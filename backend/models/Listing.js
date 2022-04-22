@@ -1,13 +1,12 @@
 import mongoose from 'mongoose'
 
 const postSchema = mongoose.Schema({
-    location: Array,
-    checkin: String,
-    checkout: String,
-    guests: String,
+    state: [{type:String}],
+    city: [{type:String}]
+    
 });
-postSchema.set('collection', 'rentals');
-const Listing = mongoose.model('Listing', postSchema, 'rentals');
+postSchema.set('collection', 'rentals_final');
+const Listing = mongoose.model('Listing', postSchema, 'rentals_final');
 
 
 

@@ -10,7 +10,12 @@ import * as api from '../api'
 function DisplayRentals(){
     const[posts, setPosts] = useState([]);
     useEffect(() => {
-        api.fetchPosts()
+        api.fetchPosts({
+            params:{
+                state:"",
+                city:""
+            }
+        })
             .then(response => {
                 setPosts(response.data);
                 //console.log(response.data)

@@ -4,7 +4,7 @@ import { getRecommendedPosts, createPost, getPosts} from '../controllers/posts.j
 const router = express.Router();
 
 router.get('/', getRecommendedPosts);
-router.get('/ResultsPage', getPosts);
+router.get('/:state', getPosts);
 router.post('/', createPost);
 
 
