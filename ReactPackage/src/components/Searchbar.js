@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './Searchbar.css'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-
+import { useDispatch, useSelector } from 'react-redux'
+import {getPosts} from '../actions/posts'
 
 import { usaCities } from './usaCities';
 
@@ -11,8 +11,8 @@ import { usaCities } from './usaCities';
 
 var numberOfGuests =0;
 function Searchbar(){
-    
-    
+    const posts =useSelector((state)=>state.posts);
+    const dispatch = useDispatch();
 
 
 
@@ -43,18 +43,27 @@ function Searchbar(){
 
     const onSubmit = () =>{
         var location = document.getElementsByClassName("place")[0].getElementsByTagName('input')[0].value;
+        var index = location.indexOf(',');
+        var city =""
+        if(index>-1)
+         city = [location.substring(0,index), "", ""];
+        
+        var state = [location.substring(index+1), "", ""];
         var checkin = document.getElementById("c1").value;
         var checkout = document.getElementById("c2").value;
         var guests = document.getElementById("hidden-but").value;
-        console.log(location);
+        //console.log("City" +location);
+        
+        dispatch(getPosts({
+            params:{
+                state: state,
+                city: city
+            }
+        }));
 
-        axios.get('/ParadiseSprings').then((response) => {
-            const data = response.data;
-            console.log('Data has been received');
-        })
-        .catch(() => {
-            alert('Error');
-        });
+        
+        
+        
     }
 
     var Typeahead = require('react-typeahead').Typeahead;
@@ -95,10 +104,10 @@ function Searchbar(){
                         </span>
                      </div>
                     
-                     <div className="search-icon" onClick={handleClick2}>
+                     <div className="search-icon" >
                      <Link id="result-link" to="/ResultsPage">
                         <button type="submit" name="Submit" id="search-button" onClick={onSubmit}>
-                            <i  class="fas fa-search"></i>
+                            <i  className="fas fa-search"></i>
                         </button>
                         </Link>
                     </div>

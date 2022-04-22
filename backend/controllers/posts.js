@@ -2,7 +2,7 @@ import PostMessage from "../models/Listing.js";
 
 
 export const getRecommendedPosts = async (req, res) => {
-    try{    console.log(req.query.city[0])
+    try{    console.log(req.query.state[0])
             if(req.query.state === "" && req.query.city === ""){
                 
                 const PostMessages = await PostMessage.aggregate([{$sample: {size:20}}])
@@ -12,8 +12,8 @@ export const getRecommendedPosts = async (req, res) => {
             else if(req.query.city === ""){
                 
                 const PostMessages = await PostMessage.aggregate([{$match: { $or: [
-                    {state:req.query.state[1]},
                     {state:req.query.state[0]},
+                    {state:req.query.state[1]},
                     {state:req.query.state[2]}]
                     
                 }},{$sample:{size:25}}]);
@@ -21,10 +21,10 @@ export const getRecommendedPosts = async (req, res) => {
                 res.status(200).json(PostMessages);
             }
             else{
-                console.log(req.query.city[1])
+             
                 const PostMessages = await PostMessage.aggregate([{$match: { $or: [
-                    {city:req.query.city[1]},
                     {city:req.query.city[0]},
+                    {city:req.query.city[1]},
                     {city:req.query.city[2]}]
                     
                 }},{$sample:{size:25}}]);

@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import './Searchbar2.css'
 import {Link} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import {getPosts} from '../actions/posts'
 
 import { usaCities } from '../components/usaCities';
 
 var numberOfGuests =0;
 function Searchbar2(){
     
+    const posts =useSelector((state)=>state.posts);
+    const dispatch = useDispatch();
     const guestInc = () =>{
         numberOfGuests++;
         document.getElementById('guest-text').innerHTML = numberOfGuests;
@@ -31,10 +35,33 @@ function Searchbar2(){
     const handleEntailmentRequest= (e)=> {
         e.preventDefault();
     }
+
+    const onSubmit = () =>{
+        var location = document.getElementsByClassName("place")[0].getElementsByTagName('input')[0].value;
+        var index = location.indexOf(',');
+        var city =""
+        if(index>-1)
+         city = [location.substring(0,index), "", ""];
+        
+        var state = [location.substring(index+1), "", ""];
+        //var checkin = document.getElementById("c1").value;
+        //var checkout = document.getElementById("c2").value;
+        //var guests = document.getElementById("hidden-but").value;
+        console.log("City" +location);
+        
+        dispatch(getPosts({
+            params:{
+                state: state,
+                city: city
+            }
+        }));
+        console.log(posts);
+    }
+
     var Typeahead = require('react-typeahead').Typeahead;
    
     return(
-        <div id = "search-div" >
+        <div id = "search-div1" >
         <form method ="post" action= "createQuery.php">
             <div className = "search center" >
                
@@ -69,10 +96,10 @@ function Searchbar2(){
                         </span>
                      </div>
                     
-                     <div className="search-icon" onClick={handleClick2}>
-                     <Link id="result-link" to="/ResultsPage">
-                        <button type="submit" name="Submit" id="search-button">
-                            <i  class="fas fa-search"></i>
+                     <div className="search-icon">
+                     <Link id="result-link" to="/ResultsPage" >
+                        <button type="submit" name="Submit" id="search-button" onClick={onSubmit}>
+                            <i  className="fas fa-search"></i>
                         </button>
                         </Link>
                     </div>

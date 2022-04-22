@@ -1,4 +1,4 @@
-#back{
+#back-one{
     
     background-image:url("../components/beach1.jpg");
     height:30vh;
@@ -7,7 +7,7 @@
  
 }
 
-#search-div{
+#search-div1{
    
    width:100%;
    background-color:transparent;

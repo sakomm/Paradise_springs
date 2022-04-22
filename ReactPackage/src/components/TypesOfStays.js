@@ -4,59 +4,62 @@ import axios from 'axios';
 import {useDispatch} from 'react-redux'
 import { getResults } from '../actions/posts';
 import {Link} from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector} from 'react-redux'
 import * as api from '../api'
+import {getPosts} from '../actions/posts'
+
 
 
 function TypesOfStays(){
     
-    
+    const dispatch = useDispatch();
     const handleClick = () =>{
+       dispatch(getPosts({
+        params:{
+            state: ["Florida", "California", "Hawaii"],
+            city: ""
+        }
+    }));
        
-        api.fetchPosts({
-            params:{
-                state: ["Florida", "California", "Hawaii"],
-                city: ""
-            }
-        })
-            .then(response => console.log(response.data));
        
     }
     const handleClick1 = () =>{
-        api.fetchPosts({
+        dispatch(getPosts({
             params:{
                 state: "",
                 city: ["Nashville", "Atlanta", "Chicago"]
             }
-        })
-            .then(response => console.log(response.data));
+        }));
+
+            
     }
+
     const handleClick2 = () =>{
-        api.fetchPosts({
+        dispatch(getPosts({
             params:{
                 state: ["Colorado", "Montana", "Wyoming"],
                 city: ""
             }
-        })
-            .then(response => console.log(response.data));
+        }));
+            
     }
     const handleClick3 = () =>{
-        api.fetchPosts({
+        dispatch(getPosts({
             params:{
                 state: ["Hawaii", "", ""],
                 city: ""
             }
-        })
-            .then(response => console.log(response.data));
+        }));
+            
     }
     const handleClick4 = () =>{
-        api.fetchPosts({
+        dispatch(getPosts({
             params:{
                 state: ["West Virginia", "Louisiana", "North Carolina"],
                 city: ""
             }
-        })
-            .then(response => console.log(response.data));
+        }));
+            
       
     }
     return(
