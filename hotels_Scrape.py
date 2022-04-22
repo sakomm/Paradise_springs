@@ -1,4 +1,3 @@
-import json
 from multiprocessing.connection import wait
 import time
 import re
@@ -7,7 +6,8 @@ import selenium
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-input_city1 = ""
+from pymongo import MongoClient
+import certifi
 
 params = {
     "Check-in": "",
@@ -29,19 +29,21 @@ def gen_url(location, Check_in, Check_out, adults, rooms):
     return url
 
 
-def gen_location():
+def gen_location(city_state):
     """
     generate the location
 
     Ocean%20City%2C%20Maryland%2C%20United%20States%20of%20America
     """
-    input_city1 = input("Enter the city: ")
-    input_state = input("Enter the state: ")
+    data = city_state.split(", ")
+
+    input_city = data[0]
+    input_state = data[1]
+
     input_country = "United%20States%20of%20America"
 
-    input_city = input_city1.replace(" ", "%20")
+    input_city = input_city.replace(" ", "%20")
     input_state = input_state.replace(" ", "%20")
-    input_country = input_country.replace(" ", "%20")
 
     location = f"{input_city}%2C%20{input_state}%2C%20{input_country}"
 
@@ -53,7 +55,8 @@ def scrape_hotels(url):
     options = webdriver.ChromeOptions()
     options.add_argument('--log-level=3')
 
-    driver = webdriver.Chrome(executable_path=r'C:\bin\chromedriver.exe', options=options)
+    driver = webdriver.Chrome(
+        executable_path=r'C:\bin\chromedriver.exe', options=options)
 
     driver.get(url)
 
@@ -63,7 +66,7 @@ def scrape_hotels(url):
     for i in range(0, 19000, 100):
         driver.execute_script(f"window.scrollTo(0,{i});")
         curPoint = i
-        time.sleep(.05)
+        time.sleep(.2)
 
     rental_package = []
 
@@ -119,30 +122,61 @@ def scrape_hotels(url):
     return rental_package
 
 
-def make_json(full_rentals, location):
-    """
-    make a json file of the scraped data
-    """
-    # make a json file of the scraped data each property should have its own section all index 0 are tougether
-    with open(f"JSON_Outputs/{location}_hotels_scrape.json", "a") as f:
+def database_insert(rental_actual, city1):
+    # https://www.mongodb.com/blog/post/getting-started-with-python-and-mongodb
+    client = MongoClient(
+        "mongodb+srv://skom:access123@cluster0.5vezi.mongodb.net/test", tlsCAFile=certifi.where())
+    # make a database of rentals
+    db = client.rentals_test_drop
 
-        for rentals in full_rentals:
-            json.dump({"property": rentals}, f)
-            f.write("\n")
+    data = city1.split(", ")
+    city = data[0]
+    state = data[1]
 
-    # close the file
-    f.close()
+    #title, neighboorhood, review, numRev, price, price_actual, redirect, image
+    for data in rental_actual:
+        rental_info = {}
+        rental_info["key"] = city1
+
+        rental_info["rental_name"] = data[0]
+        rental_info["neighboorhood"] = data[1]
+        rental_info["rental_rating"] = data[2]
+
+        if data[3] == []:
+            rental_info["n_reviews"] = 0
+        else:
+            rental_info["n_reviews"] = data[3][0]
+
+        rental_info["rental_price"] = data[4]
+        rental_info["rental_amenities"] = "N/A"
+        rental_info["rental_image"] = data[6]
+        rental_info["room_link"] = data[7]
+
+        rental_info["platform"] = "Hotels.com"
+
+        db.rentals_final.insert_one(rental_info)
 
 
 def main():
 
     # def gen_url(location,Check_in,Check_out,adults,rooms):
-    location = gen_location()
-    url = gen_url(location, "2022-04-20", "2022-04-21", "2", "1")
 
-    print(url)
-    json_data = scrape_hotels(url)
-    make_json(json_data, "test")
+    # city_state = [
+    #     'New York, New York', 'Honolulu, Hawaii', 'Miami, Florida', 'Hialeah, Florida', 'Miami Gardens, Florida', 'Miramar, Florida', 'Brownsville, Texas', 'Pembroke Pines, Florida', 'Hollywood, Florida', 'Davie, Florida', 'Fort Lauderdale, Florida', 'Pompano Beach, Florida', 'McAllen, Texas', 'Coral Springs, Florida', 'Edinburg, Texas', 'Cape Coral, Florida', 'West Palm Beach, Florida', 'Port St. Lucie, Florida', 'Laredo, Texas', 'Corpus Christi, Texas', 'St. Petersburg, Florida', 'Tampa, Florida', 'Clearwater, Florida', 'Palm Bay, Florida', 'Lakeland, Florida', 'Orlando, Florida', 'San Antonio, Texas', 'League City, Texas', 'Pearland, Texas', 'Sugar Land, Texas', 'Pasadena, Texas', 'Gainesville, Florida', 'Houston, Texas', 'New Orleans, Louisiana', 'Beaumont, Texas', 'Lafayette, Louisiana', 'Austin, Texas', 'Jacksonville, Florida', 'Baton Rouge, Louisiana', 'Tallahassee, Florida', 'Round Rock, Texas', 'College Station, Texas', 'Mobile, Alabama', 'Killeen, Texas', 'Waco, Texas', 'El Paso, Texas', 'Odessa, Texas', 'Savannah, Georgia', 'Midland, Texas', 'Tucson, Arizona', 'Las Cruces, New Mexico', 'Jackson, Mississippi', 'Tyler, Texas', 'Montgomery, Alabama', 'Abilene, Texas', 'Shreveport, Louisiana', 'Columbus, Georgia', 'Chula Vista, California', 'Grand Prairie, Texas', 'Arlington, Texas', 'Mesquite, Texas', 'Dallas, Texas', 'Fort Worth, Texas', 'El Cajon, California', 'Macon, Georgia', 'San Diego, California', 'Charleston, South Carolina', 'Irving, Texas', 'Garland, Texas', 'North Charleston, South Carolina', 'Richardson, Texas', 'Carrollton, Texas', 'Lewisville, Texas', 'Plano, Texas', 'Allen, Texas', 'Carlsbad, California', 'Escondido, California', 'Frisco, Texas', 'McKinney, Texas', 'Oceanside, California', 'Denton, Texas', 'Chandler, Arizona', 'Gilbert, Arizona', 'Augusta, Georgia', 'Tempe, Arizona', 'Mesa, Arizona', 'Temecula, California', 'Birmingham, Alabama', 'Glendale, Arizona', 'Lubbock, Texas', 'Phoenix, Arizona', 'Murrieta, California', 'South Fulton, Georgia', 'Surprise, Arizona', 'Irvine, California', 'Costa Mesa, California', 'Scottsdale, Arizona', 'Menifee, California', 'Huntington Beach, California', 'Santa Ana, California', 'Garden Grove, California', 'Atlanta, Georgia', 'Peoria, Arizona', 'Orange, California', 'Long Beach, California', 'Torrance, California', 'Anaheim, California', 'Corona, California', 'Fullerton, California', 'Norwalk, California', 'Wichita Falls, Texas', 'Moreno Valley, California', 'Riverside, California', 'Downey, California', 'Athens, Georgia', 'Sandy Springs, Georgia', 'Inglewood, California', 'Jurupa Valley, California', 'Los Angeles, California', 'Columbia, South Carolina', 'Ontario, California', 'Pomona, California', 'West Covina, California', 'El Monte, California', 'Fontana, California', 'Rialto, California', 'Rancho Cucamonga, California', 'San Bernardino, California', 'Pasadena, California', 'Glendale, California', 'Burbank, California', 'Thousand Oaks, California', 'Oxnard, California', 'Wilmington, North Carolina', 'Simi Valley, California', 'Ventura, California', 'Santa Clarita, California', 'Victorville, California', 'Palmdale, California', 'Lancaster, California', 'Huntsville, Alabama', 'Little Rock, Arkansas', 'Santa Maria, California', 'Chattanooga, Tennessee', 'Fayetteville, North Carolina', 'Albuquerque, New Mexico', 'Memphis, Tennessee', 'Amarillo, Texas', 'Charlotte, North Carolina', 'Norman, Oklahoma', 'Rio Rancho, New Mexico', 'Bakersfield, California', 'Concord, North Carolina', 'Oklahoma City, Oklahoma', 'Cary, North Carolina', 'Raleigh, North Carolina', 'Murfreesboro, Tennessee', 'Knoxville, Tennessee', 'Durham, North Carolina', 'High Point, North Carolina', 'Henderson, Nevada', 'Broken Arrow, Oklahoma', 'Greensboro, North Carolina', 'Winston�Salem, North Carolina', 'Tulsa, Oklahoma', 'Nashville, Tennessee', 'Las Vegas, Nevada', 'North Las Vegas, Nevada', 'Visalia, California', 'Clarksville, Tennessee', 'Chesapeake, Virginia', 'Salinas, California', 'Fresno, California', 'Virginia Beach, Virginia', 'Clovis, California', 'Norfolk, Virginia', 'Hampton, Virginia', 'Newport News, Virginia', 'Springfield, Missouri', 'Roanoke, Virginia', 'San Jose, California', 'Santa Clara, California', 'Sunnyvale, California', 'Fremont, California', 'Richmond, Virginia', 'San Mateo, California', 'Hayward, California', 'Modesto, California', 'Wichita, Kansas', 'Daly City, California', 'San Francisco, California', 'Oakland, California', 'Berkeley, California', 'Richmond, California', 'Stockton, California', 'Antioch, California', 'Concord, California', 'Evansville, Indiana', 'Lexington, Kentucky', 'Vallejo, California', 'Louisville, Kentucky', 'Fairfield, California', 'Pueblo, Colorado', 'Vacaville, California', 'Elk Grove, California', 'Santa Rosa, California', 'Sacramento, California', 'St. Louis, Missouri', 'Roseville, California', 'Alexandria, Virginia', 'Colorado Springs, Colorado', 'Overland Park, Kansas', 'Olathe, Kansas', 'Washington, District of Columbia', "Lee's Summit, Missouri", 'Columbia, Missouri', 'Topeka, Kansas', 'Independence, Missouri', 'Kansas City, Missouri', 'Kansas City, Kansas', 'Cincinnati, Ohio', 'Baltimore, Maryland', 'Reno, Nevada', 'Sparks, Nevada', 'Centennial, Colorado', 'Aurora, Colorado', 'Lakewood, Colorado', 'Chico, California', 'Denver, Colorado', 'Dayton, Ohio', 'Indianapolis, Indiana', 'Springfield, Illinois', 'Arvada, Colorado', 'Westminster, Colorado', 'Thornton, Colorado', 'Columbus, Ohio', 'Philadelphia, Pennsylvania', 'Boulder, Colorado', 'Lakewood, New Jersey', 'Provo, Utah', 'Greeley, Colorado', 'Pittsburgh, Pennsylvania', 'Edison, New Jersey', 'Fort Collins, Colorado', 'Woodbridge, New Jersey', 'Allentown, Pennsylvania', 'West Jordan, Utah', 'Elizabeth, New Jersey', 'West Valley City, Utah', 'Jersey City, New Jersey', 'Newark, New Jersey', 'Peoria, Illinois', 'Salt Lake City, Utah', 'Lincoln, Nebraska', 'Paterson, New Jersey', 'Yonkers, New York', 'Stamford, Connecticut', 'Akron, Ohio', 'Fort Wayne, Indiana', 'Bridgeport, Connecticut', 'Omaha, Nebraska', 'New Haven, Connecticut', 'Cleveland, Ohio', 'Joliet, Illinois', 'Waterbury, Connecticut', 'Davenport, Iowa', 'Des Moines, Iowa', 'New Bedford, Massachusetts', 'Toledo, Ohio', 'South Bend, Indiana', 'Naperville, Illinois', 'Hartford, Connecticut', 'Aurora, Illinois', 'Providence, Rhode Island', 'Chicago, Illinois', 'Cedar Rapids, Iowa', 'Elgin, Illinois', 'Brockton, Massachusetts', 'Springfield, Massachusetts', 'Quincy, Massachusetts', 'Rockford, Illinois', 'Worcester, Massachusetts', 'Ann Arbor, Michigan', 'Dearborn, Michigan', 'Boston, Massachusetts', 'Cambridge, Massachusetts', 'Detroit, Michigan', 'Lynn, Massachusetts', 'Warren, Michigan', 'Clinton, Michigan', 'Sterling Heights, Michigan', 'Lowell, Massachusetts', 'Lansing, Michigan', 'Buffalo, New York', 'Grand Rapids, Michigan', 'Manchester, New Hampshire', 'Syracuse, New York', 'Milwaukee, Wisconsin', 'Madison, Wisconsin', 'Rochester, New York', 'Sioux Falls, South Dakota', 'Nampa, Idaho', 'Boise, Idaho', 'Meridian, Idaho', 'Rochester, Minnesota', 'Eugene, Oregon', 'Green Bay, Wisconsin', 'Salem, Oregon', 'Saint Paul, Minnesota', 'Minneapolis, Minnesota', 'Gresham, Oregon', 'Hillsboro, Oregon', 'Portland, Oregon', 'Vancouver, Washington', 'Billings, Montana', 'Fargo, North Dakota', 'Tacoma, Washington', 'Federal Way, Washington', 'Kent, Washington', 'Renton, Washington', 'Bellevue, Washington', 'Seattle, Washington', 'Spokane Valley, Washington', 'Spokane, Washington', 'Everett, Washington', 'Anchorage, Alaska'
+    # ]
+    #'Davie, Florida', 'Fort Lauderdale, Florida', 'Pompano Beach, Florida', 'McAllen, Texas', 'Coral Springs, Florida', 'Edinburg, Texas', 'Cape Coral, Florida', 'West Palm Beach, Florida', 'Port St. Lucie, Florida', 'Laredo, Texas',
+
+    city_state = ['Oklahoma City, Oklahoma', 'Cary, North Carolina', 'Raleigh, North Carolina', 'Murfreesboro, Tennessee', 'Knoxville, Tennessee'
+    ]
+     #'Durham, North Carolina', 'High Point, North Carolina', 'Henderson, Nevada', 'Broken Arrow, Oklahoma', 'Greensboro, North Carolina', 'Winston Salem, North Carolina', 'Tulsa, Oklahoma', 'Nashville, Tennessee', 'Las Vegas, Nevada', 'North Las Vegas, Nevada', 'Visalia, California', 'Clarksville, Tennessee', 'Chesapeake, Virginia', 'Salinas, California', 'Fresno, California', 'Virginia Beach, Virginia', 'Clovis, California', 'Norfolk, Virginia', 'Hampton, Virginia', 'Newport News, Virginia', 'Springfield, Missouri', 'Roanoke, Virginia', 'San Jose, California', 'Santa Clara, California', 'Sunnyvale, California', 'Fremont, California', 'Richmond, Virginia', 'San Mateo, California', 'Hayward, California', 'Modesto, California', 'Wichita, Kansas', 'Daly City, California', 'San Francisco, California', 'Oakland, California', 'Berkeley, California', 'Richmond, California', 'Stockton, California', 'Antioch, California', 'Concord, California', 'Evansville, Indiana', 'Lexington, Kentucky', 'Vallejo, California', 'Louisville, Kentucky', 'Fairfield, California', 'Pueblo, Colorado', 'Vacaville, California', 'Elk Grove, California', 'Santa Rosa, California', 'Sacramento, California', 'St. Louis, Missouri', 'Roseville, California', 'Alexandria, Virginia', 'Colorado Springs, Colorado', 'Overland Park, Kansas', 'Olathe, Kansas', 'Washington, District of Columbia', "Lee's Summit, Missouri", 'Columbia, Missouri', 'Topeka, Kansas', 'Independence, Missouri', 'Kansas City, Missouri', 'Kansas City, Kansas', 'Cincinnati, Ohio', 'Baltimore, Maryland', 'Reno, Nevada', 'Sparks, Nevada', 'Centennial, Colorado', 'Aurora, Colorado', 'Lakewood, Colorado', 'Chico, California', 'Denver, Colorado', 'Dayton, Ohio', 'Indianapolis, Indiana', 'Springfield, Illinois', 'Arvada, Colorado', 'Westminster, Colorado', 'Thornton, Colorado', 'Columbus, Ohio', 'Philadelphia, Pennsylvania', 'Boulder, Colorado', 'Lakewood, New Jersey', 'Provo, Utah', 'Greeley, Colorado', 'Pittsburgh, Pennsylvania', 'Edison, New Jersey', 'Fort Collins, Colorado', 'Woodbridge, New Jersey', 'Allentown, Pennsylvania', 'West Jordan, Utah', 'Elizabeth, New Jersey', 'West Valley City, Utah', 'Jersey City, New Jersey', 'Newark, New Jersey', 'Peoria, Illinois', 'Salt Lake City, Utah', 'Lincoln, Nebraska', 'Paterson, New Jersey', 'Yonkers, New York', 'Stamford, Connecticut', 'Akron, Ohio', 'Fort Wayne, Indiana', 'Bridgeport, Connecticut', 'Omaha, Nebraska', 'New Haven, Connecticut', 'Cleveland, Ohio', 'Joliet, Illinois', 'Waterbury, Connecticut', 'Davenport, Iowa', 'Des Moines, Iowa', 'New Bedford, Massachusetts', 'Toledo, Ohio', 'South Bend, Indiana', 'Naperville, Illinois', 'Hartford, Connecticut', 'Aurora, Illinois', 'Providence, Rhode Island', 'Chicago, Illinois', 'Cedar Rapids, Iowa', 'Elgin, Illinois', 'Brockton, Massachusetts', 'Springfield, Massachusetts', 'Quincy, Massachusetts', 'Rockford, Illinois', 'Worcester, Massachusetts', 'Ann Arbor, Michigan', 'Dearborn, Michigan', 'Boston, Massachusetts', 'Cambridge, Massachusetts', 'Detroit, Michigan', 'Lynn, Massachusetts', 'Warren, Michigan', 'Clinton, Michigan', 'Sterling Heights, Michigan', 'Lowell, Massachusetts', 'Lansing, Michigan', 'Buffalo, New York', 'Grand Rapids, Michigan', 'Manchester, New Hampshire', 'Syracuse, New York', 'Milwaukee, Wisconsin', 'Madison, Wisconsin', 'Rochester, New York', 'Sioux Falls, South Dakota', 'Nampa, Idaho', 'Boise, Idaho', 'Meridian, Idaho', 'Rochester, Minnesota', 'Eugene, Oregon', 'Green Bay, Wisconsin', 'Salem, Oregon', 'Saint Paul, Minnesota', 'Minneapolis, Minnesota', 'Gresham, Oregon', 'Hillsboro, Oregon', 'Portland, Oregon', 'Vancouver, Washington', 'Billings, Montana', 'Fargo, North Dakota', 'Tacoma, Washington', 'Federal Way, Washington', 'Kent, Washington', 'Renton, Washington', 'Bellevue, Washington', 'Seattle, Washington', 'Spokane Valley, Washington', 'Spokane, Washington', 'Everett, Washington', 'Anchorage, Alaska'
+    for city in city_state:
+        location = gen_location(city)
+        url = gen_url(location, "2022-04-23", "2022-04-24", "2", "1")
+
+        data = scrape_hotels(url)
+        database_insert(data, city)
+
+        print(f"{city} is done")
 
 
 if __name__ == "__main__":
