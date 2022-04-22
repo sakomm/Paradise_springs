@@ -21,6 +21,6 @@ Based on the needs of the system being developed we determined that the Model-Vi
 -----------------------------------------------------------------
 
 ### Made By 
-Developed in collaboration Grace Barton, Rishab Jain, and Saianurag Kommuri (@Grace-Barton,@rishab838 and @sakomm) 
+Developed in collaboration by Grace Barton, Rishab Jain, and Saianurag Kommuri (@Grace-Barton,@rishab838 and @sakomm) 
 
 
