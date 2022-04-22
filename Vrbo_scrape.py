@@ -34,7 +34,7 @@ def url_gen(offset, location, check_in, check_out, adults, children, pets):
 
     if(check_in == "" and check_out == ""):
         today = datetime.date.today()
-        tomorow = today + datetime.timedelta(days=30)
+        tomorow = today + datetime.timedelta(days=3)
         check_in = today.strftime("%Y-%m-%d")
         check_out = tomorow.strftime("%Y-%m-%d")
 
@@ -48,10 +48,11 @@ def url_gen(offset, location, check_in, check_out, adults, children, pets):
     return all_urls
 
 
-def location_gen():
+def location_gen(city_state):
     #order is city, state, country
-    input_city = input("Enter the city: ")
-    input_state = input("Enter the state: ")
+    locations = city_state.split(", ")
+    input_city = locations[0]
+    input_state = locations[1]
     input_country = "united-states"
 
     location = f"{input_city.lower()}-{input_state.lower()}-{input_country.lower()}"
@@ -194,7 +195,7 @@ def main():
 
     location = "dallas-texas-united-states"
     params["Check-in"] = "2022-04-22"
-    params["Check-out"] = "2022-04-30"
+    params["Check-out"] = "2022-04-25"
     params["adults"] = "1"
     params["children"] = "1"
     params["pets"] = "false"
