@@ -39,24 +39,31 @@ function Searchbar2(){
     const onSubmit = () =>{
         var location = document.getElementsByClassName("place")[0].getElementsByTagName('input')[0].value;
         var index = location.indexOf(',');
-        var city =""
-        if(index>-1)
-         city = [location.substring(0,index), "", ""];
+        var city =undefined;
+        if(index>-1){
+         city = location.substring(0,index).trim();
+        }
         
-        var state = [location.substring(index+1), "", ""];
+        var state = location.substring(index+1).trim();
         //var checkin = document.getElementById("c1").value;
-        //var checkout = document.getElementById("c2").value;
-        //var guests = document.getElementById("hidden-but").value;
-       
+       //var checkout = document.getElementById("c2").value;
+        var guests = document.getElementById("hidden-but").value;
+        if(guests=="0"){
+            guests=undefined;
+        }
+        else{
+            guests = guests+ " guests";
+        }
+        console.log(city);
         
         dispatch(getPosts({
             params:{
                 state: state,
-                city: city
+                city: city,
+                guests: guests
             }
         }));
        
-        console.log("Break one :" +posts);
     }
 
     var Typeahead = require('react-typeahead').Typeahead;

@@ -25,18 +25,23 @@ export const getRecommendedPosts = async (req, res) => {
                 //console.log(PostMessages);
                 res.status(200).json(PostMessages);
             }
-            else if(req.query.city === ""){
+            else{
+                
+               
                 //make variables, check if they are defined, if they are pass them into the query statement
-
-                const PostMessages = await PostMessage.aggregate([{$match: {$or: [
-                    {state:req.query.state[0]},
-                    {state:req.query.state[1]},
-                    {state:req.query.state[2]}]
-                    
-                }},{$sample:{size:25}}]);
+                
+               
+                console.log(req.query)
+                const PostMessages = await PostMessage.aggregate([
+                    {$match:
+                        req.query
+                                
+                    },{$sample: {size:25}}]);
                 //console.log(PostMessages);
                 res.status(200).json(PostMessages);
             }
+
+            /*
             else{
              
                 const PostMessages = await PostMessage.aggregate([{$match: { $or: [
@@ -49,7 +54,7 @@ export const getRecommendedPosts = async (req, res) => {
                 res.status(200).json(PostMessages);
             }
        
-        
+        */
 
     }
     catch(error){
