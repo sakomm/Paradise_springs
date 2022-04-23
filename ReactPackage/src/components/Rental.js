@@ -16,7 +16,7 @@ function Rental({ post}){
          <div id="text-cont">
             <p id="property" >{post.rental_name}</p>
             <p>Safety Rating:</p>
-            <p id="price">${post.rental_price}/night</p>
+            <p id="price">{post.rental_price}</p>
             </div>  
             </a>
         </div>
