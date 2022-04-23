@@ -12,11 +12,13 @@ function ResultsPage(){
     console.log(posts)
     console.log(posts.length)
   
+    useEffect(() => {
          if(posts.length>0){
               localStorage.setItem('posts', JSON.stringify(posts));
               console.log("hi :"+JSON.parse(localStorage.getItem('posts')));
     
         }
+    },[posts]);
    
     return(
 
