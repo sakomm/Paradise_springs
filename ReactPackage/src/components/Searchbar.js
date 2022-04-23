@@ -52,12 +52,14 @@ function Searchbar(){
         var checkin = document.getElementById("c1").value;
         var checkout = document.getElementById("c2").value;
         var guests = document.getElementById("hidden-but").value;
+        guests = guests+ " guests";
         console.log(checkin);
         
         dispatch(getPosts({
             params:{
                 state: state,
-                city: city
+                city: city,
+                guests: guests
             }
         }));
         

@@ -1,11 +1,11 @@
 import PostMessage from "../models/Listing.js";
-//import Safety from "../models/Safety.js"
+import Safety from "../models/Safety.js"
 
 export const getRecommendedPosts = async (req, res) => {
     try{    
 
     
-/*
+
             if(req.query.key !==undefined){
                 //console.log("hi");
                 //console.log(req.query.key)
@@ -13,21 +13,22 @@ export const getRecommendedPosts = async (req, res) => {
                //console.log(Rating);
                 res.status(200).json(Rating);
             }
-*/
+
             
 
 
 
 
-            if(req.query.state === "" && req.query.city === ""){
+            else if(req.query.state === "" && req.query.city === ""){
                 
                 const PostMessages = await PostMessage.aggregate([{$sample: {size:20}}])
                 //console.log(PostMessages);
                 res.status(200).json(PostMessages);
             }
             else if(req.query.city === ""){
-                
-                const PostMessages = await PostMessage.aggregate([{$match: { $or: [
+                //make variables, check if they are defined, if they are pass them into the query statement
+
+                const PostMessages = await PostMessage.aggregate([{$match: {$or: [
                     {state:req.query.state[0]},
                     {state:req.query.state[1]},
                     {state:req.query.state[2]}]
