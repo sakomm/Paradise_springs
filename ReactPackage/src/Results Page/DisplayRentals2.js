@@ -10,24 +10,29 @@ import * as api from '../api'
 function DisplayRentals2(){
 
    
-    var posts =useSelector((state)=>state.posts);
-    const[post, setPosts] = useState([]);
+    const posts =useSelector((state)=>state.posts);
+    const[posts1, setPosts] = useState([]);
    
-   
-    if(posts.length==0){
-        setPosts(JSON.parse(localStorage.getItem('posts')));
-    }
+    useEffect(() => {
+
+        
+        if(posts.length==0){
+            console.log(JSON.parse(localStorage.getItem('posts')));
+            setPosts(JSON.parse(localStorage.getItem('posts')));
+            console.log("one: "+ posts1)
+        }
+        
+    
+    },[posts]);
     
     
-    
-    
-    console.log(posts);
+    console.log("Posts2 :" + posts1);
     
     return(
-        !posts.length? <CircularProgress /> : (
+        !posts1.length? <CircularProgress /> : (
         <div className="container1">
            
-               {posts.map((post) => (
+               {posts1.map((post) => (
                    <Rental2 key = {post._id} post={post} />
                ))}
             
