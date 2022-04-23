@@ -14,7 +14,8 @@ function DisplayRentals2(){
     const[posts1, setPosts] = useState([]);
     
     useEffect(() => {
-        setPosts(posts);
+        if(posts!=null)
+            setPosts(posts);
         if(posts!=null && posts.length==0){
             console.log(JSON.parse(localStorage.getItem('posts')));
             setPosts(JSON.parse(localStorage.getItem('posts')));
