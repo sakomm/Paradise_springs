@@ -8,25 +8,26 @@ import * as api from '../api'
 function Rental2({post}){
     const posts =useSelector((state)=>state.posts);
     const[rating, setRating] = useState([]);
-
+    var rated = "N/A"
     useEffect(() => {
-        console.log(post.key)
-        async function fetchRatings(){
-            await api.fetchPosts({
+        //console.log(post.key)
+        
+            api.fetchPosts({
             params:{
                 key:post.key
                
             }
-        })
-            .then(response => {
-                if(response.data!==undefined){
-                setRating(response.data);
-               console.log(rating[0].safety_rating)
-                }
+        }).then(response => {
+            setRating(response.data);
+                
             });
-        }
+        
     },[]);
-    
+
+    if(rating[0]!==undefined){
+        rated=rating[0].safety_rating;            
+        //console.log("Rating: "+rating[0].safety_rating)
+    }
    
 
     return(
@@ -38,7 +39,7 @@ function Rental2({post}){
             <div id = "textDiv" >
             <div id="top-half">
             <p id="property" className="postText1">{post.rental_name}</p>
-            <p className="postText">Safety Rating:  </p>
+            <p className="postText">Safety Rating: {rated} </p>
             </div>
             <div id="bot-rent">
                 <div id="rating">

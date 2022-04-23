@@ -17,9 +17,9 @@ function DisplayRentals2(){
         if(posts!=null)
             setPosts(posts);
         if(posts!=null && posts.length==0){
-            console.log(JSON.parse(localStorage.getItem('posts')));
+            //console.log(JSON.parse(localStorage.getItem('posts')));
             setPosts(JSON.parse(localStorage.getItem('posts')));
-            console.log("one: "+ posts1)
+            //console.log("one: "+ posts1)
         }
         
         
@@ -27,7 +27,7 @@ function DisplayRentals2(){
     },[posts]);
     
     
-    console.log("Posts2 :" + posts1);
+    //console.log("Posts2 :" + posts1);
     
     return(
         !posts1.length? <CircularProgress /> : (
