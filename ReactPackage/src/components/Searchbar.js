@@ -57,15 +57,15 @@ function Searchbar(){
             guests=undefined;
         }
         else{
-            guests = guests+ " guests";
+            guests = guests+ " guests ";
         }
-        console.log(city);
+       
         
         dispatch(getPosts({
             params:{
                 state: state,
                 city: city,
-                guests: guests
+                rental_amenities: guests
             }
         }));
        

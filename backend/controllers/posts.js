@@ -31,13 +31,12 @@ export const getRecommendedPosts = async (req, res) => {
                 //make variables, check if they are defined, if they are pass them into the query statement
                 
                
-                console.log(req.query)
+                console.log(req.query.rental_amenities)
                 const PostMessages = await PostMessage.aggregate([
-                    {$match:
+                    {$match: 
                         req.query
-                                
                     },{$sample: {size:25}}]);
-                //console.log(PostMessages);
+                console.log(PostMessages);
                 res.status(200).json(PostMessages);
             }
 

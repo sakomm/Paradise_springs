@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 const postSchema = mongoose.Schema({
     state: String,
     city: String,
-    guests: String
+    rental_amenities: Array
     
 });
 postSchema.set('collection', 'rentals_final');
