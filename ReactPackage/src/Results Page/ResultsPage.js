@@ -9,15 +9,15 @@ import React, {useState, useEffect} from 'react'
 
 function ResultsPage(){
     const posts =useSelector((state)=>state.posts);
-    console.log(posts);
+    //console.log(posts);
     
-    if(posts.length>0){
-        
-        localStorage.setItem('posts', JSON.stringify(posts));
-        //console.log(JSON.parse(localStorage.getItem('posts')));
+    useEffect(() => {
+         if(posts.length>0){
+              localStorage.setItem('posts', JSON.stringify(posts));
+              console.log("hi :"+JSON.parse(localStorage.getItem('posts')));
     
-    }
-
+        }
+    },[posts]);
     return(
 
         <div id="resultpage">

@@ -61,7 +61,7 @@ function Searchbar(){
             }
         }));
 
-        
+        console.log("Break two :" +posts);
         
         
     }

@@ -47,7 +47,7 @@ function Searchbar2(){
         //var checkin = document.getElementById("c1").value;
         //var checkout = document.getElementById("c2").value;
         //var guests = document.getElementById("hidden-but").value;
-        console.log("City" +location);
+       
         
         dispatch(getPosts({
             params:{
@@ -55,7 +55,7 @@ function Searchbar2(){
                 city: city
             }
         }));
-        console.log(posts);
+        console.log("Break one :" +posts);
     }
 
     var Typeahead = require('react-typeahead').Typeahead;
