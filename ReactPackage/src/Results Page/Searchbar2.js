@@ -55,6 +55,7 @@ function Searchbar2(){
                 city: city
             }
         }));
+       
         console.log("Break one :" +posts);
     }
 

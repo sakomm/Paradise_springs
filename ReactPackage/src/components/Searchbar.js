@@ -60,7 +60,7 @@ function Searchbar(){
                 city: city
             }
         }));
-
+        
         console.log("Break two :" +posts);
         
         

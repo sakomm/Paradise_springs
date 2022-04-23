@@ -12,15 +12,15 @@ function DisplayRentals2(){
    
     const posts =useSelector((state)=>state.posts);
     const[posts1, setPosts] = useState([]);
-   
+    
     useEffect(() => {
-
-        
+        setPosts(posts);
         if(posts.length==0){
             console.log(JSON.parse(localStorage.getItem('posts')));
             setPosts(JSON.parse(localStorage.getItem('posts')));
             console.log("one: "+ posts1)
         }
+        
         
     
     },[posts]);
