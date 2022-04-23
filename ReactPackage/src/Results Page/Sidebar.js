@@ -3,40 +3,34 @@ import React from 'react'
 import './Sidebar.css'
 
 // https://stackoverflow.com/questions/24369197/how-to-add-static-text-inside-an-input-form
+
 function Sidebar(){
-    // make a nice sidebar for the results page in the return statement have inputs for the number of people, city, and price range have the labels inside the inputs field
-
-
         return(
-
-            
             <div id="sidebar">
                 <h1 id="sidebar-title">Search Filters</h1>
                     <form>
-                        <div id="people-inputs">
-                            {/* <label for="input-people">Number of People:</label> */}
-                            { /* center the label and input */ }
-                            <input id="input-people" type="number" min="1" max="10" placeholder="Number of People"  />
-                        </div>
-                        <div id="city-inputs">
-                            <label id="sidebar-label">City</label>
-                            <input id="sidebar-input" type="text" name="city" />
+                        <div id="bed-inputs">
+                            <input id="input-bed" type="number" min="1" max="10" placeholder="Number of Beds" size="30" />
                         </div>
                         <div id="price-inputs">
-                            <label id="sidebar-label">Price Range</label>
-                            <input id="sidebar-input" type="number" name="price" min="0" max="5000" step="100" defaultValue="0" />
+                            <input id="sidebar-input" type="number" name="price" min="0" max="5000" step="100" placeholder='Price Range'/>
+                        </div>
+                        <div id="saftey-inputs">
+                            <input id="sidebar-input" type="number" name="Saftey" min="0" max="100" step="5" placeholder='Saftey Filter'/>
                         </div>
                         <div id="rating-inputs">
-                            <label id="sidebar-label">Rating</label>
-                            <input id="sidebar-input" type="number" name="rating" min="0" max="5" step="1" defaultValue="0" />
+                            <input id="sidebar-input" type="number" name="rating" min="0" max="5" step="1" placeholder='Rating' />
                         </div>
-                        <div id="checkin-inputs">
-                            <label id="sidebar-label">checkin</label>
-                            <input id="sidebar-input" type="date" name="rating" min="0" max="5" step="1" defaultValue="0" />
+                        <div id = "platform-selector">
+                            <select id="platform-select">
+                                <option value="AirBnB">AirBnB</option>
+                                <option value="Booking">Booking.com</option>
+                                <option value="VRBO">VRBO</option>
+                                <option value="Hotels">Hotels.com</option>
+                            </select>    
                         </div>
-                        <div id="chekout-inputs">
-                            <label id="sidebar-label">chekout</label>
-                            <input id="sidebar-input" type="date" name="rating" min="0" max="5" step="1" defaultValue="0" />
+                        <div id = "submit-button">
+                            <button id="submit-button" type="submit">Submit</button>
                         </div>
                     </form>
             </div>
