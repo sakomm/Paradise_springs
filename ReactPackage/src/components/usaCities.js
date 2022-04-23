@@ -2,7 +2,6 @@
 export const usaCities = [
   'Alabama',
   'Alaska',
-  'American Samoa',
   'Arizona',
   'Arkansas',
   'California',
@@ -10,7 +9,6 @@ export const usaCities = [
   'Connecticut',
   'Delaware',
   'District of Columbia',
-  'Federated States of Micronesia',
   'Florida',
   'Georgia',
   'Guam',
@@ -59,8 +57,8 @@ export const usaCities = [
   'West Virginia',
   'Wisconsin',
   'Wyoming', 
-  'New York, New York'
-  , 'Honolulu, Hawaii', 
+  'New York, New York',
+  'Honolulu, Hawaii', 
   'Miami, Florida', 
   'Hialeah, Florida', 
   'Miami Gardens, Florida', 
