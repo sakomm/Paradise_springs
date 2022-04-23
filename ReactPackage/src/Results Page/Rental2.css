@@ -1,5 +1,4 @@
 
-
 .rentalPostPic{
     object-fit:cover;
     display:block;
@@ -10,10 +9,9 @@
 }
 
 .postText{
-
     padding: 5px;
     text-align: left;
-
+    
     font-size: 17px;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: italcs;
