@@ -23,6 +23,20 @@
     color: rgb(0, 0, 0);
 }
 
+.legend{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.checkbox{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+#sidebar-title {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 #sidebar-input {
     border : none;
     -webkit-appearance: none;
