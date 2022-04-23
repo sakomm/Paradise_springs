@@ -15,7 +15,7 @@ function DisplayRentals2(){
    
    
     if(posts.length==0){
-        posts = JSON.parse(localStorage.getItem('posts'));
+        setPosts(JSON.parse(localStorage.getItem('posts')));
     }
     
     
