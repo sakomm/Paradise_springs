@@ -43,6 +43,7 @@ function Rental2({post}){
             </div>
             <div id="bot-rent">
                 <div id="rating">
+                    <p lablel = "rating" ></p>
                     <p id="rate1">{post.rental_rating}</p>
                 </div>
                 <div id="pricing">

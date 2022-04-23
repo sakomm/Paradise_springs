@@ -5,10 +5,21 @@
     display:block;
     width:100%;
     height:100%;
-    border-radius: 2%;
+    border-radius: 3%;
   
 }
 
+.postText{
+
+    padding: 5px;
+    text-align: left;
+
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: italcs;
+    width: 55%;
+
+}
 .postText1{
     
     margin:0;
@@ -46,7 +57,7 @@
 
 #rental2{
     padding:1vh 1vh;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     height:20vw;
     box-sizing: border-box;
     display:flex;
@@ -94,6 +105,12 @@
 #price1{
     height:100%;
     width:100%;
+
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:20px;
+    font-weight: 700;
+
     display:flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -102,6 +119,12 @@
 #rate1{
     height:100%;
     width:100%;
+    
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size:20px;
+    font-weight: 500;
+
     display:flex;
     align-items: flex-end;
     

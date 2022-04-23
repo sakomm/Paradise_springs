@@ -30,9 +30,7 @@ function Sidebar(){
                                 <option value="Hotels">Hotels.com</option>
                             </select>    
                         </div>
-                        <div id = "submit-button">
-                            <button id="submit-button" type="submit">Submit</button>
-                        </div>
+
                     </form>
             </div>
         );
