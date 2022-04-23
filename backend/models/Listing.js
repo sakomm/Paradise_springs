@@ -11,5 +11,4 @@ const Listing = mongoose.model('Listing', postSchema, 'rentals_final');
 
 
 
-
-export default Listing
+export default Listing;

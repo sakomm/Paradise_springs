@@ -18,7 +18,7 @@ function DisplayRentals(){
         })
             .then(response => {
                 setPosts(response.data);
-                //console.log(response.data)
+                console.log(response.data)
             });
     }, []);
     

@@ -52,7 +52,7 @@ function Searchbar(){
         var checkin = document.getElementById("c1").value;
         var checkout = document.getElementById("c2").value;
         var guests = document.getElementById("hidden-but").value;
-        //console.log("City" +location);
+        console.log(checkin);
         
         dispatch(getPosts({
             params:{
@@ -90,7 +90,7 @@ function Searchbar(){
                 listAnchor: 'locations1',
                 results: 'type-results'}} options = {usaCities} maxVisible = {10} />
                      
-                     <input id ="c1" type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
+                     <input id ="c1" type="date" className="in-dates center-text" placeholder="check-in" value ="hi" onClick={handleClick2}></input>
                      <input id ="c2" type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
                      <div id ="guests" onClick={handleClick} >
                         <span className="popup" >

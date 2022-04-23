@@ -1,9 +1,25 @@
 import PostMessage from "../models/Listing.js";
-
+import Safety from "../models/Safety.js"
 
 export const getRecommendedPosts = async (req, res) => {
-    try{    console.log(req.query.state[0])
-            if(req.query.state === "" && req.query.city === ""){
+    try{    
+
+    
+
+            if(req.query.key !==undefined){
+                //console.log("hi");
+                //console.log(req.query.key)
+               const Rating = await Safety.find({key:req.query.key})
+               //console.log(Rating);
+                res.status(200).json(Rating);
+            }
+
+            
+
+
+
+
+            else if(req.query.state === "" && req.query.city === ""){
                 
                 const PostMessages = await PostMessage.aggregate([{$sample: {size:20}}])
                 //console.log(PostMessages);
@@ -55,13 +71,13 @@ export const createPost = async (req, res) => {
     }
 }
 
-export const getPosts = async (req, res) => {
+export const getRatings = async (req, res) => {
     console.log("hello1");
     try{
-        console.log("hello");
-        const PostMessages = await PostMessage.find({key: "Florida"});
-        console.log(PostMessages);
-        res.status(200).json(PostMessages);
+        
+        const SafteyRatings = await Saftey.find({key: "Florida"});
+        console.log(Saftey);
+        res.status(200).json(Saftey);
 
     }
     catch(error){

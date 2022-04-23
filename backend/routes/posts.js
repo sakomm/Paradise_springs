@@ -1,10 +1,10 @@
 import express from 'express'
-import { getRecommendedPosts, createPost, getPosts} from '../controllers/posts.js'
+import { getRecommendedPosts, createPost, getRatings} from '../controllers/posts.js'
 
 const router = express.Router();
 
 router.get('/', getRecommendedPosts);
-router.get('/:state', getPosts);
+router.get('/:state', getRatings);
 router.post('/', createPost);
 
 

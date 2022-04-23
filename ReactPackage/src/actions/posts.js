@@ -13,6 +13,19 @@ export const getPosts = (filters) => async (dispatch) => {
 
 }
 
+export const getRating = (filters) => async (dispatch) => {
+    try{
+        const { data } = await api.fetchRating(filters);
+        dispatch({type: 'FETCH_ALL', payload: data});
+    }
+    catch(error){
+        console.log(error.message);
+    }
+    
+
+
+}
+
 export const getResults = (filters) => async (dispatch) => {
     console.log("Howdy");
     try{

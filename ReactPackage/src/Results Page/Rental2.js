@@ -1,7 +1,34 @@
-import React from "react";
+import React, {useState, useEffect} from 'react'
 import './Rental2.css'
+import { useDispatch, useSelector } from 'react-redux'
+import {getRating} from '../actions/posts'
+import axios from "axios";
+import * as api from '../api'
 
 function Rental2({post}){
+    const posts =useSelector((state)=>state.posts);
+    const[rating, setRating] = useState([]);
+
+    useEffect(() => {
+        console.log(post.key)
+        async function fetchRatings(){
+            await api.fetchPosts({
+            params:{
+                key:post.key
+               
+            }
+        })
+            .then(response => {
+                if(response.data!==undefined){
+                setRating(response.data);
+               console.log(rating[0].safety_rating)
+                }
+            });
+        }
+    },[]);
+    
+   
+
     return(
         <div id = "rental2">
              <a id ="house-url1" href = {post.room_link}>
@@ -11,7 +38,7 @@ function Rental2({post}){
             <div id = "textDiv" >
             <div id="top-half">
             <p id="property" className="postText1">{post.rental_name}</p>
-            <p className="postText">Safety Rating: TBA</p>
+            <p className="postText">Safety Rating:  </p>
             </div>
             <div id="bot-rent">
                 <div id="rating">
