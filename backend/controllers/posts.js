@@ -1,11 +1,11 @@
 import PostMessage from "../models/Listing.js";
-import Safety from "../models/Safety.js"
+//import Safety from "../models/Safety.js"
 
 export const getRecommendedPosts = async (req, res) => {
     try{    
 
     
-
+/*
             if(req.query.key !==undefined){
                 //console.log("hi");
                 //console.log(req.query.key)
@@ -13,13 +13,13 @@ export const getRecommendedPosts = async (req, res) => {
                //console.log(Rating);
                 res.status(200).json(Rating);
             }
-
+*/
             
 
 
 
 
-            else if(req.query.state === "" && req.query.city === ""){
+            if(req.query.state === "" && req.query.city === ""){
                 
                 const PostMessages = await PostMessage.aggregate([{$sample: {size:20}}])
                 //console.log(PostMessages);
