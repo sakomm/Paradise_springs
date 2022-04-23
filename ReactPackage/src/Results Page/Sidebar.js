@@ -6,11 +6,12 @@ import './Sidebar.css'
 
 function Sidebar(){
         return(
+
             <div id="sidebar">
                 <h1 id="sidebar-title">Search Filters</h1>
                     <form>
                         <div id="bed-inputs">
-                            <input id="input-bed" type="number" min="1" max="10" placeholder="Number of Beds" size="30" />
+                            <input id="input-bed" type="number" min="1" max="10" placeholder="Number of Beds" />
                         </div>
                         <div id="price-inputs">
                             <input id="sidebar-input" type="number" name="price" min="0" max="5000" step="100" placeholder='Price Range'/>
@@ -22,7 +23,7 @@ function Sidebar(){
                             <input id="sidebar-input" type="number" name="rating" min="0" max="5" step="1" placeholder='Rating' />
                         </div>
                         <div id = "platform-selector">
-                            <select id="platform-select">
+                            <select id="platform-select" multiple> 
                                 <option value="AirBnB">AirBnB</option>
                                 <option value="Booking">Booking.com</option>
                                 <option value="VRBO">VRBO</option>

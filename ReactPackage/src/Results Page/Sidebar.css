@@ -14,3 +14,64 @@
     font-weight: bold;
     width: 84%;
 }
+
+#bed-inputs {
+    padding: 8px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    width: 84%;
+    size: 40px; 
+}
+
+#price-inputs {
+    padding: 8px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    width: 84%;
+}
+
+#saftey-inputs {
+    padding: 8px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    width: 84%;
+}
+
+#rating-inputs {
+    padding: 8px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    width: 84%;
+}
+
+#platform-selector {
+    padding: 8px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    width: 84%;
+}
+
+#submit-button {
+    padding: 8px;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    width: 84%;
+} 
