@@ -5,12 +5,80 @@
     box-sizing: border-box;
     vertical-align: top;
 }
-.Sideheader{
+
+.Sideheader {
     padding: 8px;
-    text-align: left;
+    text-align: center;
     color: rgb(0, 0, 0);
     font-size: 20px;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     width: 84%;
+}
+
+.label{
+    font-size: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.legend{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+.checkbox{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: bold;
+}
+
+#sidebar-title {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#sidebar-input {
+    border : none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    appearance: none;
+    background: #f2f8f9;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    padding : 5px;
+    border-radius: 3px;
+
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    position: relative;
+    top: 0px;
+
+    width: 195px;
+}
+
+#sidebar-input::placeholder {
+    color: off-black;
+    font-size: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: normal;
+}
+#sidebar-input:focus {
+    outline: none;
+    border: 1px solid #0c6e7b;
+    transition: all 0.5s ease;
+}
+#sidebar-input:focus::placeholder {
+    transition: all 0.2s;
+    color: transparent;
 }

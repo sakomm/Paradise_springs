@@ -1,7 +1,7 @@
 #result {
     height: 100%;
     width: 85%;
-    background-color: white;
+    background-color: rgb(110, 192, 221);
     position: absolute;
     display: inline-block;
     box-sizing: border-box;
@@ -11,10 +11,10 @@
 }
 h2 {
     padding: 8px;
-    text-align: left;
+    text-align: center;
     color: rgb(0, 0, 0);
     font-size: 20px;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
-    width: 15%;
+    width: 100%;
 }
