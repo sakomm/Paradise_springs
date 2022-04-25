@@ -11,6 +11,5 @@
   },
   "scripts": {
       "dev": "concurrently \"cd ReactPackage && npm run start\" \"cd backend && npm run start\""
-      
   }
 }
