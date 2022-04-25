@@ -13,3 +13,4 @@ geckodriver.log
 /api
 /reducers
 /resizes
+.vercel

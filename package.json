@@ -6,6 +6,11 @@
     "express-ejs-layouts": "^2.5.1"
   },
   "devDependencies": {
+    "concurrently": "^7.1.0",
     "nodemon": "^2.0.15"
+  },
+  "scripts": {
+      "dev": "concurrently \"cd ReactPackage && npm run start\" \"cd backend && npm run start\""
+
   }
 }
