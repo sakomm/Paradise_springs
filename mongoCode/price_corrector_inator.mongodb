@@ -1,0 +1,23 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('rentals_test_drop');
+
+try{
+  
+  db.rentals_final.updateMany(
+    // only update documents that have AirBnb as the platform
+    {platform: "AirBnB"},
+    // use aggregations
+    [
+      {$set:{"rental_price": { $arrayElemAt: [ { "$split": [ "$rental_price", "ight$"] }, 1 ] }}},
+      {$set:{"rental_price": { $concat: [{$literal: "$"},"$rental_price"]}}}
+    ]
+  )
+}
+catch(e){
+  print(e)
+}
