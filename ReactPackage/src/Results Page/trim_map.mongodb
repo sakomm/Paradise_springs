@@ -1,0 +1,33 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('rentals_test_drop');
+
+
+// Build an aggregation to view total sales for each product in 2014.
+const aggregation = [{
+    $set: {
+        rental_amenities: {
+            $map: {
+                input: '$rental_amenities',
+                as: 'feature',
+                'in': {
+                    $trim: {
+                        input: '$$feature'
+                    }
+                }
+            }
+        }
+    }
+}]
+// Run the aggregation and open a cursor to the results.
+// Use toArray() to exhaust the cursor to return the whole result set.
+// You can use hasNext()/next() to iterate through the cursor page by page.
+
+//update the rental_amenities field if platform is AirBnb
+db.testing.updateMany(
+    {platform:"AirBnB"},aggregation
+)
