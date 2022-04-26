@@ -14,6 +14,7 @@ const aggregation = [
   }
 ]
 
-db.rentals.aggregate(aggregation);
+
+db.testing.aggregate(aggregation);
 
 
