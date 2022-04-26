@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 const url = 'http://localhost:3001/posts';
 const url1 = 'http://localhost:5000/ResultsPage';
 export const fetchPosts = (filters) => axios.get(url, filters);
