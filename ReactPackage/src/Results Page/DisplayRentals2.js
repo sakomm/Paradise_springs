@@ -30,7 +30,7 @@ function DisplayRentals2(){
     //console.log("Posts2 :" + posts1);
     
     return(
-        !posts1.length? <CircularProgress /> : (
+        posts1==null? <CircularProgress /> : (
         <div className="container1">
            
                {posts1.map((post) => (

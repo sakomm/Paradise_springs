@@ -46,7 +46,7 @@ function Searchbar2(){
         
         var state = location.substring(index+1).trim();
         //var checkin = document.getElementById("c1").value;
-       //var checkout = document.getElementById("c2").value;
+        //var checkout = document.getElementById("c2").value;
         var guests = document.getElementById("hidden-but").value;
         if(guests=="0"){
             guests=undefined;
@@ -54,16 +54,19 @@ function Searchbar2(){
         else{
             guests = guests+ " guests";
         }
-        console.log(city);
-        
+       
+        //console.log(checkout);
         dispatch(getPosts({
             params:{
                 state: state,
                 city: city,
-                guests: guests
+                rental_amenities: guests,
+                
+
             }
         }));
        
+        
     }
 
     var Typeahead = require('react-typeahead').Typeahead;

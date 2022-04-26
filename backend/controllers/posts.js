@@ -4,7 +4,7 @@ import Safety from "../models/Safety.js"
 export const getRecommendedPosts = async (req, res) => {
     try{    
 
-    
+            //console.log(req.query.city.isArray());
 
             if(req.query.key !==undefined){
                 //console.log("hi");
@@ -25,17 +25,37 @@ export const getRecommendedPosts = async (req, res) => {
                 //console.log(PostMessages);
                 res.status(200).json(PostMessages);
             }
+            else if(req.query.city.isArray()){
+                const PostMessages = await PostMessage.aggregate([{$match: { $or: [
+                    {city:req.query.city[0]},
+                    {city:req.query.city[1]},
+                    {city:req.query.city[2]}]
+                    
+                }},{$sample:{size:25}}]);
+                //console.log(PostMessages);
+                res.status(200).json(PostMessages);
+            }
+            else if(req.query.state.isArray()){
+                const PostMessages = await PostMessage.aggregate([{$match: { $or: [
+                    {city:req.query.state[0]},
+                    {city:req.query.state[1]},
+                    {city:req.query.state[2]}]
+                    
+                }},{$sample:{size:25}}]);
+                console.log(PostMessages);
+                res.status(200).json(PostMessages);
+            }
             else{
                 
                
                 //make variables, check if they are defined, if they are pass them into the query statement
                 
                
-                console.log(req.query.rental_amenities)
+                console.log(req.query)
                 const PostMessages = await PostMessage.aggregate([
                     {$match: 
                         req.query
-                    },{$sample: {size:25}}]);
+                    },{$sample: {size:300}}]);
                 console.log(PostMessages);
                 res.status(200).json(PostMessages);
             }

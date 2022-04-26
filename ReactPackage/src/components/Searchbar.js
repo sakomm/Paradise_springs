@@ -50,22 +50,24 @@ function Searchbar(){
         }
         
         var state = location.substring(index+1).trim();
-        //var checkin = document.getElementById("c1").value;
-       //var checkout = document.getElementById("c2").value;
+        var checkin = document.getElementById("c1").value;
+        var checkout = document.getElementById("c2").value;
         var guests = document.getElementById("hidden-but").value;
         if(guests=="0"){
             guests=undefined;
         }
         else{
-            guests = guests+ " guests ";
+            guests = guests+ " guests";
         }
        
-        
+        console.log(checkout);
         dispatch(getPosts({
             params:{
                 state: state,
                 city: city,
-                rental_amenities: guests
+                rental_amenities: guests,
+                
+
             }
         }));
        
@@ -97,7 +99,7 @@ function Searchbar(){
                 listAnchor: 'locations1',
                 results: 'type-results'}} options = {usaCities} maxVisible = {10} />
                      
-                     <input id ="c1" type="date" className="in-dates center-text" placeholder="check-in" value ="hi" onClick={handleClick2}></input>
+                     <input id ="c1" type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
                      <input id ="c2" type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
                      <div id ="guests" onClick={handleClick} >
                         <span className="popup" >
