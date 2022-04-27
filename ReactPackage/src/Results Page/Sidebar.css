@@ -1,16 +1,23 @@
 #sidebar {
     height: 62vh;
-    width: 15%;
+    width: 18%;
     display: inline-block;
     box-sizing: border-box;
     vertical-align: top;
+    
+    
+    
+}
+
+#side-cont{
+    padding-left:1.3vh;
 }
 
 .Sideheader {
     padding: 8px;
     text-align: center;
     color: rgb(0, 0, 0);
-    font-size: 20px;
+    font-size: 1.8vh;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: bold;
     width: 84%;
@@ -35,9 +42,10 @@
 
 #sidebar-title {
     font-family: 'Source Sans Pro', sans-serif;
+    font-size:2.5vh;
 }
 
-#sidebar-input {
+.sidebar-input {
     border : none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -45,17 +53,15 @@
     appearance: none;
     background: #f2f8f9;
 
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
     
     padding : 5px;
     border-radius: 3px;
 
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 100%;
+    
+    margin-bottom:1vh;
+    
 
     display: flex;
     flex-direction: row;
@@ -63,22 +69,55 @@
 
     position: relative;
     top: 0px;
-
-    width: 195px;
+    width: 80%;
+    font-size:1.8vh;
 }
 
-#sidebar-input::placeholder {
+.sidebar-input::placeholder {
     color: off-black;
     font-size: 10px;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: normal;
+    font-size:1.5vh;
+    
 }
-#sidebar-input:focus {
+.sidebar-input:focus {
     outline: none;
     border: 1px solid #0c6e7b;
     transition: all 0.5s ease;
 }
-#sidebar-input:focus::placeholder {
+.sidebar-input:focus::placeholder {
     transition: all 0.2s;
     color: transparent;
+    
 }
+
+fieldset{
+    width:80%;
+    padding-block-end:0;
+    margin-bottom:1.5vh;
+}
+
+.amen{
+    display:inline-block;
+}
+
+label{
+    font-size:1.6vh;
+}
+legend{
+    font-size:1.6vh; 
+}
+
+.in{
+    font-size:1.5vh;
+    height:1.5vh;
+    width:1.5vh;
+}
+
+#update{
+    height:2vh;
+    width:6vh;
+    font-size:1.5vh;
+}
+

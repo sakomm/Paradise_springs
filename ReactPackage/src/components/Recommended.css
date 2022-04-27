@@ -1,6 +1,27 @@
 #rec-stays{
     font-family: 'Source Sans Pro', sans-serif;
     width:100%;
+    font-size:1.5vh;
     
 }
+
+@media (max-width:990px) and (min-width:700px){
+   
+        
+       
+   
+}
+
+@media (max-width:699px) and (min-width:400px){
+  
+
+
+}
+
+@media (max-width:399px) {
+ 
+
+    
+}
+ 
 

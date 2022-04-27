@@ -12,8 +12,8 @@ function DisplayRentals(){
     useEffect(() => {
         api.fetchPosts({
             params:{
-                state:"",
-                city:""
+                state:undefined,
+                city:undefined
             }
         })
             .then(response => {

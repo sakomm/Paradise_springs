@@ -33,6 +33,7 @@ p{
     font-size:15px;
     font-weight: 500;
     overflow-y: hidden;
+    font-size: 1.5vh;
     
 }
 #property{
@@ -48,4 +49,111 @@ p{
     height:100%;
     width:100%;
     display:block;
+}
+
+@media (max-width:990px) and (min-width:700px){
+    #post{
+        background-color:transparent;
+        height:26vw;
+        width: 25%;
+        border-radius: 2%;
+        padding: 0 1vh;
+        display:inline-flex;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        flex-direction: column;
+        
+       
+    }
+
+    p{
+        align-self: flex-start;
+        white-space: pre-wrap;
+        padding-top: 0.2rem;
+        margin:0;
+        font-weight: bold;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size:15px;
+        font-weight: 500;
+        overflow-y: hidden;
+        font-size: 1.2vh;
+        
+    }
+}
+
+@media (max-width:699px) and (min-width:400px){
+    #post{
+        background-color:transparent;
+        height:25vw;
+        width: 50%;
+        border-radius: 2%;
+        padding: 0 1vh;
+        display:inline-flex;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        flex-direction: column;
+       
+        
+       
+    }
+
+    p{
+        align-self: flex-start;
+        white-space: pre-wrap;
+        padding-top: 0.2rem;
+        margin:0;
+        font-weight: bold;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size:15px;
+        font-weight: 500;
+        overflow-y: hidden;
+        font-size: 1vh;
+        
+    }
+}
+
+@media (max-width:399px) {
+    #post{
+        background-color:transparent;
+        height:38vw;
+        width: 100%;
+        border-radius: 2%;
+        padding: 0 1vh;
+        display:inline-flex;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        box-sizing: border-box;
+        flex-direction: column;
+        
+       
+    }
+
+    p{
+        align-self: flex-start;
+        white-space: pre-wrap;
+        padding-top: 0.2rem;
+        margin:0;
+        font-weight: bold;
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size:15px;
+        font-weight: 500;
+        overflow-y: hidden;
+        font-size: 1vh;
+        width:100%;
+        
+    }
+    #rental-pic{
+   
+        object-fit:cover;
+        display:flex;
+        width:100%;
+        height:78%;
+        border-radius: 2%;
+        margin:auto;
+    }
 }

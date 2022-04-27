@@ -4,6 +4,9 @@
      height:60vh;
      width:100%;
      background-position:bottom;
+     object-fit: cover;
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
   
  }
 
@@ -25,7 +28,7 @@
 
  .search{
     background-color: white;
-    height:6vh;
+    height:7vh;
     width:55vw;
     border-style:solid;
     border-color:rgb(8, 95, 136);
@@ -66,6 +69,7 @@
       background-color: white;
       border-color:gray;
       
+      
   }
 
   .in-dates{
@@ -74,6 +78,8 @@
     border-style:none;
     border-right-style: solid;
     outline:none;
+    font-size: 1.2vh;
+    padding-right:0.5vh;
   }
   .out-dates{
     width:15%;
@@ -81,6 +87,8 @@
     border-style:none;
     border-right-style: solid;
     outline:none;
+    font-size: 1.2vh;
+    padding-right:0.5vh;
   }
 
   #guests{
@@ -92,7 +100,7 @@
     background-color: white;
     border-color:gray;
     border-right-width: 2px;
-   
+    font-size: 1.2vh;
   }
 
   .center-text{
@@ -106,6 +114,7 @@
       align-items: center;
       justify-content:baseline;
       box-sizing:border-box; 
+      font-size: 1.2vh;
   }
 
   #search-button{
@@ -122,13 +131,14 @@
     color:black;
     outline:none;
     margin:0;
-    padding: 10px 0;
+    padding: 1vh 0;
     padding-left:8px;
     font-family: 'Source Sans Pro', sans-serif;
     color:rgb(8, 95, 136);
     font-weight: 600;
     display:block;
     width:100%;
+    font-size:1.5vh;
   }
 
   .locations2{
@@ -141,6 +151,7 @@
     font-family: 'Source Sans Pro', sans-serif;
     color:rgb(8, 95, 136);
     font-weight: 600;
+    font-size:1.5vh;
     
   }
 
@@ -210,11 +221,11 @@
   .g-button{
     display:flex;
     border-radius: 50%;
-    height:40px;
-    width:40px;
+    height:3vh;
+    width:3vh;
     text-align:center;
     font-weight: 800;
-    font-size:20px;
+    font-size:1.5vh;
     border-style:solid;
     border-width: 2px;
     align-items: center;
@@ -228,7 +239,7 @@
     font-family: 'Source Sans Pro', sans-serif;
     color:rgb(8, 95, 136);
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.5vh
     
   
   }
@@ -238,7 +249,7 @@
     font-family: 'Source Sans Pro', sans-serif;
     color:rgb(8, 95, 136);
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.6vh;
     padding-top:3vh;
     padding-bottom:4vh;
   }
@@ -256,7 +267,7 @@
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
-    
+    font-size:1.5vh;
   }
 
   #but-two{
@@ -274,6 +285,22 @@
 
   #result-link{
     width:100%;
+    
+  }
+
+  #g-text{
+    font-size:1.2vh;
+    text-align: center;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    
+  }
+
+  .font{
+    font-size:1.2vh;
+
   }
 
   

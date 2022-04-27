@@ -25,4 +25,30 @@
 #postings-only::-webkit-scrollbar {
     display: none;
   }
+
+@media (max-width:990px) and (min-width:700px){
+   
+        
+       
+   
+}
+
+@media (max-width:699px) and (min-width:400px){
+    #c-container{
+        width:100%;
+        height:fit-content
+    }
+
+    #postings-only{
+        height:fit-content
+    }
+
+
+}
+
+@media (max-width:399px) {
+ 
+
+    
+}
  

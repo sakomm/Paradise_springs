@@ -12,7 +12,7 @@
     padding: 5px;
     text-align: left;
     
-    font-size: 17px;
+    font-size: 1.5vh;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: italcs;
     width: 55%;
@@ -23,7 +23,7 @@
     margin:0;
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
-    font-size:20px;
+    font-size: 1.5vh;
     font-weight: 500;
 }
 #imgDiv {
@@ -106,7 +106,7 @@
 
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
-    font-size:20px;
+    font-size:1.8vh;
     font-weight: 700;
 
     display:flex;
@@ -120,7 +120,7 @@
     
     font-weight: bold;
     font-family: 'Source Sans Pro', sans-serif;
-    font-size:20px;
+    font-size:1.8vh;
     font-weight: 500;
 
     display:flex;

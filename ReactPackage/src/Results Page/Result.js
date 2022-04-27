@@ -6,7 +6,7 @@ import DisplayRentals2 from './DisplayRentals2';
 function Result(){
     return(
         <div id="result">
-        <h2>Results</h2>
+        <h1 id="res">Results</h1>
         <DisplayRentals2 />
         </div>
     );

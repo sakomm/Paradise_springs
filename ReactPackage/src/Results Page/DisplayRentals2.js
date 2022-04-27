@@ -16,7 +16,7 @@ function DisplayRentals2(){
     useEffect(() => {
         if(posts!=null)
             setPosts(posts);
-        if(posts!=null && posts.length==0){
+        if(posts==null || posts.length==0){
             //console.log(JSON.parse(localStorage.getItem('posts')));
             setPosts(JSON.parse(localStorage.getItem('posts')));
             //console.log("one: "+ posts1)

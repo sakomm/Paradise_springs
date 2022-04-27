@@ -1,5 +1,5 @@
 #types{
-    
+    font-size:1.5vh;
     padding-bottom:10vh;
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -12,18 +12,21 @@
 
 .inner-div{
    height:100%;
-   width:90%;
+   width:fit-content;
    margin:auto;
    display:flexbox;
    align-items: flex-start;
    white-space: nowrap;
+   box-sizing: border-box;
+   padding-right:1vh;
 }
 .stay{
     height:20vw;
     width:20%;
     display:inline-flex;
     flex-shrink: 0;
-    padding: 0 1vh;
+    padding-left:1vh;
+    padding-right:1vh;
     display:inline-flex;
     box-sizing: border-box;
     flex-direction: column;
@@ -34,23 +37,24 @@ img{
     width:100%;
     border-radius: 2%;
     height:80%;
+    box-sizing: border-box;
     
 }
 
 #circle1{
     display:inline-block;
     align-items: center;
-    width:50px;
-    
-    height:100%;
+    width:5vh;
     margin:0 2vh;
+    height:100%;
+   
  }
 
  .place-label{
    padding-top:0.5rem;
    font-family: 'Source Sans Pro', sans-serif;
    font-weight: 600;
-   font-size:18px;
+   font-size:1.9vh;
    color:black;
    text-decoration:dashed;
  }
@@ -58,3 +62,68 @@ img{
  #result-link1{
      text-decoration: none;
  }
+
+ @media (max-width:990px) and (min-width:700px){
+   
+    .stay{
+        height:20vw;
+        width:25%;
+        display:inline-flex;
+        flex-shrink: 0;
+        padding-left:1vh;
+        padding-right:1vh;
+        display:inline-flex;
+        box-sizing: border-box;
+        flex-direction: column;
+        overflow-x: hidden;
+    }  
+    .inner-div{
+        height:100%;
+        width:fit-content;
+        margin:auto;
+        display:flexbox;
+        align-items: flex-start;
+        white-space: nowrap;
+        box-sizing: border-box;
+        padding-right:1vh;
+        overflow-x: scroll;
+     }
+       
+   
+}
+
+@media (max-width:699px) and (min-width:400px){
+    .stay{
+        height:20vw;
+        width:50%;
+        display:inline-flex;
+        flex-shrink: 0;
+        padding-left:1vh;
+        padding-right:1vh;
+        display:inline-flex;
+        box-sizing: border-box;
+        flex-direction: column;
+        overflow-x: scroll;
+    }  
+    .inner-div{
+        height:100%;
+        width:fit-content;
+        margin:auto;
+        display:flexbox;
+        align-items: flex-start;
+        white-space: nowrap;
+        box-sizing: border-box;
+        padding-right:1vh;
+        overflow-x: scroll;
+     }
+
+
+}
+
+@media (max-width:399px) {
+ 
+
+    
+}
+ 
+

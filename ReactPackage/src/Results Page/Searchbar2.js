@@ -45,8 +45,8 @@ function Searchbar2(){
         }
         
         var state = location.substring(index+1).trim();
-        //var checkin = document.getElementById("c1").value;
-        //var checkout = document.getElementById("c2").value;
+        var checkin = document.getElementById("c1").value;
+        var checkout = document.getElementById("c2").value;
         var guests = document.getElementById("hidden-but").value;
         if(guests=="0"){
             guests=undefined;
@@ -54,18 +54,24 @@ function Searchbar2(){
         else{
             guests = guests+ " guests";
         }
-       
-        //console.log(checkout);
+        localStorage.setItem("state", state);
+        localStorage.setItem("city", city);
+        localStorage.setItem("guests", guests);
+        
+        console.log(checkout);
         dispatch(getPosts({
             params:{
                 state: state,
                 city: city,
                 rental_amenities: guests,
+                check_in: Date(checkin).toISOString,
+                check_out: Date(checkout).toISOString,
                 
 
             }
         }));
        
+        
         
     }
 
@@ -88,9 +94,10 @@ function Searchbar2(){
                     'border-right-style': 'solid',
                     'border-box': 'box-sizing',
                     'background-color' :'transparent',
+                    'font-size': '1.5vh'
                 }}} className='place'
-                customClasses={{listItem:'locations',
-                listAnchor: 'locations',
+                customClasses={{listItem:'locations2',
+                listAnchor: 'locations1',
                 results: 'type-results'}} options = {usaCities} maxVisible = {10} />
                      
                      <input type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
@@ -110,7 +117,7 @@ function Searchbar2(){
                      <div className="search-icon">
                      <Link id="result-link" to="/ResultsPage" >
                         <button type="submit" name="Submit" id="search-button" onClick={onSubmit}>
-                            <i  className="fas fa-search"></i>
+                            <i  className="fas fa-search font"></i>
                         </button>
                         </Link>
                     </div>

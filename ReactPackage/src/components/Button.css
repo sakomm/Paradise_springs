@@ -1,15 +1,15 @@
 #circle{
    display:flexbox;
    align-items: center;
-  
+   font-size:1.5vh;
     
 }
 #circleButton{
     background-color:white;
     border-color:lightblue;
     border-style:solid;
-    height:50px;
-    width:50px;
+    height:5vh;
+    width:5vh;
     margin-top:110px;
     margin: 110px 2vh;
     border-radius:50%;
@@ -17,7 +17,8 @@
     display:inline-block;
     text-align:center;
     position:relative;
-    white-space: nowrap
+    white-space: nowrap;
+    font-size:1.5vh;
     
 }
 
@@ -30,3 +31,69 @@
     padding:0;
     display:inline-block;
 }
+
+@media (max-width:990px) and (min-width:700px){
+   
+        
+       
+   
+}
+
+@media (max-width:699px) and (min-width:400px){
+    #circle{
+        display:flexbox;
+        align-items: center;
+        font-size:1.5vh;
+         
+     }
+     #circleButton{
+         background-color:white;
+         border-color:lightblue;
+         border-style:solid;
+         height:3vh;
+         width:3vh;
+         margin: 95px 2vh;
+         border-radius:50%;
+         vertical-align: middle;
+         display:inline-block;
+         text-align:center;
+         position:relative;
+         white-space: nowrap;
+         font-size:1.5vh;
+         
+     }
+     
+
+
+}
+
+@media (max-width:399px) {
+ 
+    #circle{
+        display:flexbox;
+        align-items: center;
+        font-size:1.5vh;
+        display:none;
+         
+     }
+     #circleButton{
+         background-color:white;
+         border-color:lightblue;
+         border-style:solid;
+         height:5vh;
+         width:5vh;
+         margin-top:110px;
+         margin: 110px 2vh;
+         border-radius:50%;
+         vertical-align: middle;
+         display:inline-block;
+         text-align:center;
+         position:relative;
+         white-space: nowrap;
+         font-size:1.5vh;
+         display:none;
+     }
+     
+    
+}
+ 

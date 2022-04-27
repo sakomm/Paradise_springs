@@ -20,12 +20,14 @@ function Searchbar(){
         numberOfGuests++;
         document.getElementById('guest-text').innerHTML = numberOfGuests;
         document.getElementById('hidden-but').value =numberOfGuests;
-    }
+        document.getElementById('g-text').innerHTML = "Guests: "+numberOfGuests;
+    }   
     const guestDec = () =>{
         if(numberOfGuests>0)
             numberOfGuests--;
         document.getElementById('guest-text').innerHTML = numberOfGuests;
         document.getElementById('hidden-but').value =numberOfGuests;
+        document.getElementById('g-text').innerHTML = "Guests: "+numberOfGuests;
     }
 
    
@@ -59,13 +61,18 @@ function Searchbar(){
         else{
             guests = guests+ " guests";
         }
-       
+        localStorage.setItem("state", state);
+        localStorage.setItem("city", city);
+        localStorage.setItem("guests", guests);
+        
         console.log(checkout);
         dispatch(getPosts({
             params:{
                 state: state,
                 city: city,
                 rental_amenities: guests,
+                check_in: Date(checkin).toISOString,
+                check_out: Date(checkout).toISOString,
                 
 
             }
@@ -94,6 +101,7 @@ function Searchbar(){
                     'border-right-style': 'solid',
                     'border-box': 'box-sizing',
                     'background-color' :'transparent',
+                    'font-size': '1.2vh'
                 }}} className='place'
                 customClasses={{listItem:'locations2',
                 listAnchor: 'locations1',
@@ -101,7 +109,7 @@ function Searchbar(){
                      
                      <input id ="c1" type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
                      <input id ="c2" type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
-                     <div id ="guests" onClick={handleClick} >
+                     <div id ="guests" onClick={handleClick} > 
                         <span className="popup" >
                             <button id="hidden-but" value={numberOfGuests}></button >
                             <p id="guest-font">Guests</p>
@@ -116,7 +124,7 @@ function Searchbar(){
                      <div className="search-icon" >
                      <Link id="result-link" to="/ResultsPage">
                         <button type="submit" name="Submit" id="search-button" onClick={onSubmit}>
-                            <i  className="fas fa-search"></i>
+                            <i  className="fas fa-search font"></i>
                         </button>
                         </Link>
                     </div>
