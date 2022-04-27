@@ -100,8 +100,8 @@ function Searchbar2(){
                 listAnchor: 'locations1',
                 results: 'type-results'}} options = {usaCities} maxVisible = {10} />
                      
-                     <input type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
-                     <input type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
+                     <input id="c1" type="date" className="in-dates center-text" placeholder="check-in" onClick={handleClick2}></input>
+                     <input id="c2" type="date" className="out-dates center-text" placeholder="check-out" onClick={handleClick2}></input>
                      <div id ="guests" onClick={handleClick} >
                         <span className="popup" >
                             <button id="hidden-but" value={numberOfGuests}></button >
