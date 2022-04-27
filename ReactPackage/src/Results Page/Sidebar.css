@@ -116,8 +116,9 @@ legend{
 }
 
 #update{
-    height:2vh;
-    width:6vh;
-    font-size:1.5vh;
+    height:3vh;
+    width:8vh;
+    font-size:1.3vh;
+    text-align:center;
 }
 
