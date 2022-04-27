@@ -61,14 +61,14 @@ export const getRecommendedPosts = async (req, res) => {
                     query.rental_amenities = req.query.rental_amenities;
                 }
                 if(req.query.check_out&& req.query.check_out!='undefined'){
-                    query.Check_out = {$gte:req.query.check_out};
+                    query.Check_out = req.query.check_out;
                 }
                 if(req.query.check_in&& req.query.check_in!='undefined'){
-                    query.Check_in = {$lte:req.query.check_in};
+                    query.Check_in =req.query.check_in;
                 }
                
                 if(req.query.price&& req.query.price!='undefined'){
-                    query.rental_price= {$lte:req.query.price};
+                    query.rental_price= req.query.price;
                 }
                 if(req.query.beds&& req.query.beds!='undefined'){
                     arr.push(req.query.beds);
